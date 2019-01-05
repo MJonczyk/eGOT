@@ -1,13 +1,13 @@
 package com.jestgit.egot.trasa;
 
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RestController
+@Controller
 public class TrasaController {
 
     private final TrasaRepository repository;
@@ -16,9 +16,10 @@ public class TrasaController {
         this.repository = repository;
     }
 
-    @GetMapping("/trasy")
-    List<Trasa> all() {
-        return repository.findAll();
+    @GetMapping("/main")
+    public String all() {
+        System.out.println("YOLO");
+        return "main";
     }
 
     @PostMapping("/trasy")
