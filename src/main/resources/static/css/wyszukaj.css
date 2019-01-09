@@ -15,13 +15,8 @@
     margin-bottom: 5%;
 }
 
-#opisDiv > label{
-    display: inline-block;
-    float: left;
-}
-
-#opisTextArea {
-    margin-left: 4px;
+#searchDiv{
+    text-align: center;
 }
 
 #searchInput {
@@ -29,7 +24,7 @@
     width: 50%;
 }
 
-form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyDiv, #opisDiv {
+form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyMinDiv, #punktyMaxDiv {
     margin-top: 2%;
     margin-left: 7%;
 }
@@ -39,6 +34,8 @@ form > div > label {
     width: 200px;
     margin-right: 5%;
 }
+
+
 
 
 /*-------------------------*/
@@ -122,6 +119,3 @@ form > div > label {
 #menu>div:nth-child(n + 2) {
     margin-top: 4%;
 }
-
-
-/*--------------*/
