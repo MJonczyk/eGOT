@@ -18,12 +18,17 @@ public class TrasaController {
 
     @GetMapping("/main")
     public String all() {
-        System.out.println("YOLO");
         return "main";
     }
 
-    @PostMapping("/trasy")
-    Trasa newTrasa(@RequestBody Trasa trasa){
-        return repository.save(trasa);
+    @GetMapping("/dodaj")
+    public String dodaj(){
+        return "dodaj";
     }
+
+    @GetMapping("/trasy")
+    public String getTrasy(){
+        return "trasy";
+    }
+
 }
