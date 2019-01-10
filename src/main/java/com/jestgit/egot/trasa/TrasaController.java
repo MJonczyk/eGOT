@@ -53,4 +53,15 @@ public class TrasaController {
         return modelAndView;
     }
 
+    @GetMapping("/modyfikuj")
+    public ModelAndView modifyTrasa(){
+        ModelAndView modelAndView = new ModelAndView("modyfikuj");
+        return modelAndView;
+    }
+
+    @GetMapping("/weryfikuj")
+    public ModelAndView verifyTrasa(){
+        ModelAndView modelAndView = new ModelAndView("weryfikuj");
+        return modelAndView;
+    }
 }

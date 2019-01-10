@@ -8,7 +8,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
-    <link rel="stylesheet" type="text/css" href="../css/dodaj.css">
+    <link rel="stylesheet" type="text/css" href="../css/modyfikuj.css">
 </head>
 
 <body>
@@ -19,8 +19,8 @@
             </div>
 
             <div id="buttons">
-                <a href="#">LOGOWANIE</a>
-                <a href="#">REJESTRACJA</a>
+                <a href="#">WYLOGUJ</a>
+                <a href="#">ANULUJ</a>
                 <a href="javascript:{}" onclick="document.getElementById('dodajForm').submit();">ZAPISZ</a>
             </div>
         </div>
@@ -40,7 +40,10 @@
 
             <div id="central">
                 <form id="dodajForm">
-                    <div><h2 id="formTitle">Formularz dodawania danych trasy punktowanej</h2></div>
+                    <div><h2 id="formTitle">Formularz modyfikacji danych trasy punktowanej</h2></div>
+                    <div id="trasaNazwaDiv">
+                        Bacówka na jamnej z Suchej Góry
+                    </div>
                     <div id="regionDiv">
                         <label for="regionSelect">Region</label>
                         <select id="regionSelect">
