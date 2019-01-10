@@ -19,10 +19,11 @@ public class TrasaController {
         this.repository = repository;
     }
 
-    @GetMapping("/trasy")
+    @GetMapping("/wyszukaj")
     public ModelAndView getAll() {
         ArrayList<Trasa> trasy = (ArrayList) repository.findAll();
-        ModelAndView modelAndView = new ModelAndView("main");
+        System.out.println(trasy.get(1).getGrupaGorskanazwaGrupy());
+        ModelAndView modelAndView = new ModelAndView("wyszukaj");
         modelAndView.addObject("trasy", trasy);
         return modelAndView;
     }
