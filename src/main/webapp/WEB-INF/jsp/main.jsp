@@ -1,3 +1,5 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +29,7 @@
                 <div>
                     <h3 id="menuTitle">MENU</h3>
                 </div>
-                <div><a href="#">Dodawanie tras</a></div>
+                <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="#">Modyfikacja tras</a></div>
                 <div><a href="#">Usuwanie tras</a></div>
                 <div><a href="#">Przeglądanie tras</a></div>

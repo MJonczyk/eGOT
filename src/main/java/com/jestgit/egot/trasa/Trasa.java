@@ -32,5 +32,4 @@ public class Trasa {
         else
             this.PrzewodniknumerLegitymacji = (String)id;
     }
-
 }
