@@ -29,11 +29,11 @@
                 <div>
                     <h3 id="menuTitle">MENU</h3>
                 </div>
-                <div><a href="#">Dodawanie tras</a></div>
+                <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="#">Modyfikacja tras</a></div>
                 <div><a href="#">Usuwanie tras</a></div>
-                <div><a href="#">Przeglądanie tras</a></div>
-                <div><a href="#">Wyszukiwanie tras</a></div>
+                <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
+                <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
                 <div><a href="#">Weryfikacja wycieczek</a></div>
             </div>
 
