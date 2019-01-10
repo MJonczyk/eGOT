@@ -14,13 +14,13 @@ public class Trasa {
     private String GrupaGorskanazwaGrupy;
     private String punktPoczatkowy;
     private String punktKoncowy;
-    private Double punktyZaTrase;
+    private String punktyZaTrase;
     private String opis;
     private String rodzajTrasy;
     private Long TurystaidTurysty;
-    private Long PrzewodniknumerLegitymacji;
+    private String PrzewodniknumerLegitymacji;
 
-    Trasa(String grupa, String punktPoczatkowy, String punktKoncowy, Double punktyZaTrase, String opis, String rodzajTrasy, Long id, int flaga) {
+    Trasa(String grupa, String punktPoczatkowy, String punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
         this.GrupaGorskanazwaGrupy = grupa;
         this.punktPoczatkowy = punktPoczatkowy;
         this.punktKoncowy = punktKoncowy;
@@ -28,9 +28,9 @@ public class Trasa {
         this.opis = opis;
         this.rodzajTrasy = rodzajTrasy;
         if(flaga == 0)
-            this.TurystaidTurysty = id;
+            this.TurystaidTurysty = (Long)id;
         else
-            this.PrzewodniknumerLegitymacji = id;
+            this.PrzewodniknumerLegitymacji = (String)id;
     }
 
 }
