@@ -1,12 +1,14 @@
 package com.jestgit.egot.trasa;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,18 +21,36 @@ public class TrasaController {
         this.repository = repository;
     }
 
-    @GetMapping("/wyszukaj")
+    @GetMapping({"/index", "/"})
+    public ModelAndView index() {
+        ModelAndView modelAndView = new ModelAndView("index");
+        return modelAndView;
+    }
+
+    @GetMapping("/wyswietl")
     public ModelAndView getAll() {
         ArrayList<Trasa> trasy = (ArrayList) repository.findAll();
-        System.out.println(trasy.get(1).getGrupaGorskanazwaGrupy());
-        ModelAndView modelAndView = new ModelAndView("wyszukaj");
+        ModelAndView modelAndView = new ModelAndView("wyswietl");
         modelAndView.addObject("trasy", trasy);
         return modelAndView;
     }
 
+    @GetMapping("/wyszukaj")
+    public ModelAndView search() {
+        ModelAndView modelAndView = new ModelAndView("wyszukaj");
+        return modelAndView;
+    }
+
+    @GetMapping("/dodaj")
+    public ModelAndView add() {
+        ModelAndView modelAndView = new ModelAndView("dodaj");
+        return modelAndView;
+    }
+
     @PostMapping("/dodaj")
-    public String addTrasa(@RequestBody Trasa trasa){
-        return "dodaj";
+    public ModelAndView addTrasa(@RequestBody Trasa trasa){
+        ModelAndView modelAndView = new ModelAndView("dodaj");
+        return modelAndView;
     }
 
 }

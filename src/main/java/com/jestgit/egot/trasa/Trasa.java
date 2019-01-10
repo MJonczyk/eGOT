@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "trasa")
+@Table(name = "Trasa")
 public class Trasa {
 
     @Column(name = "NUMERTRASY")
