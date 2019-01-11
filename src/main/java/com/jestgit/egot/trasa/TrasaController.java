@@ -57,7 +57,6 @@ public class TrasaController {
         Trasa trasa1 = new Trasa(grupa, trasaDto.getPunktPoczatkowy(),trasaDto.getPunktKoncowy(),
                                  trasaDto.getPunktyZaTrase(), trasaDto.getOpis(), "S", "005/2007/W" ,1);
         repository.save(trasa1);
-        repository.
         return modelAndView;
     }
 
