@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "region")
+@Table(name = "Region")
 public class Region {
 
     @Column(name = "NAZWAREGIONU")

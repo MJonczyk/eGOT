@@ -10,6 +10,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/wyswietl.css">
 </head>
 

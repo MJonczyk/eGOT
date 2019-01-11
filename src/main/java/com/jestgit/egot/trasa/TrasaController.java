@@ -54,6 +54,15 @@ public class TrasaController {
     @GetMapping("/modyfikuj")
     public ModelAndView modifyTrasa(){
         ModelAndView modelAndView = new ModelAndView("modyfikuj");
+        //!!!
+        modelAndView.addObject("trasaDto", new TrasaDTO());
+        return modelAndView;
+    }
+
+    @PostMapping("/modyfikuj")
+    public ModelAndView modifyTrasa(@ModelAttribute("trasaDto")TrasaDTO trasaDto){
+        ModelAndView modelAndView = new ModelAndView("modyfikuj");
+        trasaService.modify(trasaDto);
         return modelAndView;
     }
 

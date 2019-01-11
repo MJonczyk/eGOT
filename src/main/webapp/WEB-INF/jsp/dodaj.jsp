@@ -9,6 +9,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/dodaj.css">
 </head>
 
@@ -40,7 +41,8 @@
             </div>
 
             <div id="central">
-                <form:form method="post" modelAttribute="trasaDto">
+                <div><h2 id="formTitle">Dodaj trasę</h2></div>
+                <form:form method="post" modelAttribute="trasaDto" id="dodajForm">
                     <div id="grupaGorskaDiv">
                         <form:label path="nazwaGrupy">Grupa górska</form:label>
                         <form:select path="nazwaGrupy">
@@ -66,11 +68,7 @@
                         <form:label path="opis">Opis</form:label>
                         <form:textarea name="opis" path="opis" cols="60" rows="5"></form:textarea>
                     </div>
-                    <div id="submitDiv">
-                        <input type="submit" value="Dodaj">
-                    </div>
                 </form:form>
-                </form>
             </div>
         </div>
 

@@ -1,3 +1,6 @@
+<%@ page import="com.jestgit.egot.wycieczka.Wycieczka" %>
+<%@ page import="com.jestgit.egot.pozycjawycieczki.PozycjaWycieczki" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -8,6 +11,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/weryfikuj.css">
 </head>
 
@@ -41,8 +45,8 @@
             <div id="central">
                     <div><h2 id="formTitle">Weryfikacja wycieczki</h2></div>
                     <%
-                        Wycieczka wycieczka = request.getAttribute("wycieczka");
-                        ArrayList<PozycjaWycieczki> pozycjeWycieczki = request.getAttribute("pozycjeWycieczki");
+                        Wycieczka wycieczka = (Wycieczka) request.getAttribute("wycieczka");
+                        ArrayList<PozycjaWycieczki> pozycjeWycieczki = (ArrayList<PozycjaWycieczki>) request.getAttribute("pozycjeWycieczki");
                     %>
 
                     <div id="wycieczkaTable">
@@ -86,7 +90,7 @@
                             for(PozycjaWycieczki pozycjaWycieczki: pozycjeWycieczki){
                         %>
                                 <div class="pozycjaWycieczki">
-                                    <%= "Trasa nr " + pozycjaWycieczki.getTrasanumerTrasy()%>
+                                    <%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy()%>
                                 </div>
                         <%
                             }

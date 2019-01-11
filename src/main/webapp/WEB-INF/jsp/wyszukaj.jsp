@@ -8,6 +8,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/wyszukaj.css">
 </head>
 
@@ -42,7 +43,7 @@
                 <form>
                     <div><h2 id="formTitle">Wyszukiwarka tras</h2></div>
                     <div id="searchDiv">
-                        <a href="http://localhost:8080/wyswietl"><img src="../images/lupa.png" class="lupa"></a>
+                        <span id="span"><a href="http://localhost:8080/wyswietl"><img src="../images/lupa.png" class="lupa"></a></span>
                         <input type="text" name="search" id="searchInput">
                     </div>
                     <div id="regionDiv">
