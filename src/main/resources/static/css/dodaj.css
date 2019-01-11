@@ -1,5 +1,9 @@
 /*center area styles*/
 
+.hidden {
+    visibility: hidden;
+}
+
 #central {
     border: 3px green solid;
     position: relative;

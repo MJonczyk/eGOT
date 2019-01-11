@@ -3,23 +3,18 @@ package com.jestgit.egot.trasa;
 import com.jestgit.egot.grupa.Grupa;
 import com.jestgit.egot.grupa.GrupaRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.persistence.GeneratedValue;
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class TrasaController {
 
-    private final TrasaRepository repository;
-    private final GrupaRepository grupaRepository;
+    private TrasaService trasaService;
 
-    TrasaController(TrasaRepository repository, GrupaRepository grupaRepository) {
-        this.repository = repository;
-        this.grupaRepository = grupaRepository;
+    TrasaController(TrasaService trasaService) {
+        this.trasaService = trasaService;
     }
 
     @GetMapping({"/index", "/"})
@@ -30,7 +25,7 @@ public class TrasaController {
 
     @GetMapping("/wyswietl")
     public ModelAndView getAll() {
-        ArrayList<Trasa> trasy = (ArrayList) repository.findAll();
+        ArrayList<Trasa> trasy = trasaService.getAll();
         ModelAndView modelAndView = new ModelAndView("wyswietl");
         modelAndView.addObject("trasy", trasy);
         return modelAndView;
@@ -52,12 +47,19 @@ public class TrasaController {
     @PostMapping("/dodaj")
     public ModelAndView addTrasa(@ModelAttribute("trasaDto")TrasaDTO trasaDto){
         ModelAndView modelAndView = new ModelAndView("dodaj");
-        Grupa grupa = grupaRepository.findById(trasaDto.getNazwaGrupy()).orElse(null);
-        System.out.println(grupa.getNazwaGrupy());
-        Trasa trasa1 = new Trasa(grupa, trasaDto.getPunktPoczatkowy(),trasaDto.getPunktKoncowy(),
-                                 trasaDto.getPunktyZaTrase(), trasaDto.getOpis(), "S", "005/2007/W" ,1);
-        repository.save(trasa1);
+        trasaService.add(trasaDto);
         return modelAndView;
     }
 
+    @GetMapping("/modyfikuj")
+    public ModelAndView modifyTrasa(){
+        ModelAndView modelAndView = new ModelAndView("modyfikuj");
+        return modelAndView;
+    }
+
+    @GetMapping("/weryfikuj")
+    public ModelAndView verifyTrasa(){
+        ModelAndView modelAndView = new ModelAndView("weryfikuj");
+        return modelAndView;
+    }
 }

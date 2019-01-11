@@ -1,6 +1,6 @@
 package com.jestgit.egot.grupa;
 
-import com.jestgit.egot.Region.Region;
+import com.jestgit.egot.region.Region;
 import com.jestgit.egot.trasa.Trasa;
 import lombok.Data;
 

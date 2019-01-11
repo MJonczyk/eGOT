@@ -1,4 +1,4 @@
-package com.jestgit.egot.Region;
+package com.jestgit.egot.region;
 
 import com.jestgit.egot.grupa.Grupa;
 import lombok.Data;
@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Region")
+@Table(name = "region")
 public class Region {
 
     @Column(name = "NAZWAREGIONU")

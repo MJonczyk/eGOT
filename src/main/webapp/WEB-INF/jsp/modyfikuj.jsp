@@ -8,7 +8,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
-    <link rel="stylesheet" type="text/css" href="../css/wyszukaj.css">
+    <link rel="stylesheet" type="text/css" href="../css/modyfikuj.css">
 </head>
 
 <body>
@@ -19,9 +19,9 @@
             </div>
 
             <div id="buttons">
-                <a href="#">LOGOWANIE</a>
-                <a href="#">REJESTRACJA</a>
-
+                <a href="#">WYLOGUJ</a>
+                <a href="#">ANULUJ</a>
+                <a href="javascript:{}" onclick="document.getElementById('dodajForm').submit();">ZAPISZ</a>
             </div>
         </div>
 
@@ -39,11 +39,10 @@
             </div>
 
             <div id="central">
-                <form>
-                    <div><h2 id="formTitle">Wyszukiwarka tras</h2></div>
-                    <div id="searchDiv">
-                        <a href="http://localhost:8080/wyswietl"><img src="../images/lupa.png" class="lupa"></a>
-                        <input type="text" name="search" id="searchInput">
+                <form id="dodajForm">
+                    <div><h2 id="formTitle">Formularz modyfikacji danych trasy punktowanej</h2></div>
+                    <div id="trasaNazwaDiv">
+                        Bacówka na jamnej z Suchej Góry
                     </div>
                     <div id="regionDiv">
                         <label for="regionSelect">Region</label>
@@ -71,14 +70,15 @@
                         <label for="punktKoncowyInput">Punkt końcowy</label>
                         <input type="text" name="punktKoncowy" id="punktKoncowyInput">
                     </div>
-                    <div id="punktyMinDiv">
-                        <label for="punktyMinInput">Min. punktów</label>
-                        <input type="text" name="punktyMin" id="punktyMinInput">
+                    <div id="punktyDiv">
+                        <label for="punktyInput">Punkty</label>
+                        <input type="text" name="punkty" id="punktyInput">
                     </div>
-                    <div id="punktyMaxDiv">
-                        <label for="punktyMaxInput">Max. punktów</label>
-                        <input type="text" name="punktyMax" id="punktyMaxInput">
+                    <div id="opisDiv">
+                        <label for="opisTextArea">Opis</label>
+                        <textarea name="opis" id="opisTextArea" cols="60" rows="5"></textarea>
                     </div>
+                    <input type="submit" id="submit-form" class="hidden" />
                 </form>
             </div>
         </div>

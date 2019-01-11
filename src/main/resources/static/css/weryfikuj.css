@@ -1,7 +1,17 @@
 /*center area styles*/
 
-#trasaNazwaDiv {
-    text-align: center;
+table {
+    position: relative;
+    margin: 0 auto;
+}
+
+th {
+    font-size: 180%;
+}
+
+td {
+    font-size: 110%;
+    width: 270px;
 }
 
 #central {
@@ -19,28 +29,21 @@
     margin-bottom: 5%;
 }
 
-#searchDiv{
-    text-align: center;
+#opisDiv > label{
+    display: inline-block;
+    float: left;
 }
 
-.lupa {
-    width: 17px;
-    height: 17px;
-}
-
-.lupa:hover {
-    background-color: #a5ecff;
-    border-radius: 3px;
+#opisTextArea {
+    margin-left: 4px;
 }
 
 #searchInput {
     border-radius: 5px;
     width: 50%;
-    /*background: url("../images/lupa.png") no-repeat scroll;*/
-    /*background-size: 20px 20px;*/
 }
 
-form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyMinDiv, #punktyMaxDiv {
+form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyDiv, #opisDiv {
     margin-top: 2%;
     margin-left: 7%;
 }
@@ -50,8 +53,6 @@ form > div > label {
     width: 200px;
     margin-right: 5%;
 }
-
-
 
 
 /*-------------------------*/
@@ -135,3 +136,6 @@ form > div > label {
 #menu>div:nth-child(n + 2) {
     margin-top: 4%;
 }
+
+
+/*--------------*/

@@ -1,9 +1,11 @@
 package com.jestgit.egot.trasa;
 
 import com.jestgit.egot.grupa.Grupa;
+import com.jestgit.egot.pozycjawycieczki.PozycjaWycieczki;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -40,9 +42,12 @@ public class Trasa {
     @Column(name = "PRZEWODNIKNUMERLEGITYMACJI")
     private String PrzewodniknumerLegitymacji;
 
-    Trasa(){}
+    @OneToMany(mappedBy = "numerTrasy")
+    private Set<PozycjaWycieczki> pozycje;
 
-    Trasa(Grupa grupa, String punktPoczatkowy, String punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
+    public Trasa(){}
+
+    public Trasa(Grupa grupa, String punktPoczatkowy, String punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
         this.GrupaGorskanazwaGrupy = grupa;
         this.punktPoczatkowy = punktPoczatkowy;
         this.punktKoncowy = punktKoncowy;
