@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,43 +39,36 @@
             </div>
 
             <div id="central">
-                <form>
-                    <div><h2 id="formTitle">Formularz dodawania danych trasy punktowanej</h2></div>
-                    <div id="regionDiv">
-                        <label for="regionSelect">Region</label>
-                        <select id="regionSelect">
-                            <option value="volvo">Sudety</option>
-                            <option value="saab">Pokarpacie</option>
-                            <option value="mercedes">Costam</option>
-                            <option value="audi">Elo</option>
-                        </select>
-                    </div>
+                <form:form method="post" modelAttribute="trasaDto">
                     <div id="grupaGorskaDiv">
-                        <label for="grupaGorskaSelect">Grupa górska</label>
-                        <select id="grupaGorskaSelect">
-                            <option value="volvo">Sudety</option>
-                            <option value="saab">Pokarpacie</option>
-                            <option value="mercedes">Costam</option>
-                            <option value="audi">Elo</option>
-                        </select>
+                        <form:label path="nazwaGrupy">Grupa górska</form:label>
+                        <form:select path="nazwaGrupy">
+                            <form:option value="Tatry Wysokie">Tatry Wysokie</form:option>
+                            <form:option value="Góry Izerskie">Góry Izerskie</form:option>
+                            <form:option value="Pogórze Izerskie">Pogórze Izerskie</form:option>
+                            <form:option value="Karkonosze">Karkonosze</form:option>
+                        </form:select>
                     </div>
                     <div id="punktPoczatkowyDiv">
-                        <label for="punktPoczatkowyInput">Punkt początkowy</label>
-                        <input type="text" name="punktPoczatkowy" id="punktPoczatkowyInput">
+                        <form:label path="punktPoczatkowy">Punkt początkowy</form:label>
+                        <form:input type="text" name="punktPoczatkowy" path="punktPoczatkowy"/>
                     </div>
                     <div id="punktKoncowyDiv">
-                        <label for="punktKoncowyInput">Punkt końcowy</label>
-                        <input type="text" name="punktKoncowy" id="punktKoncowyInput">
+                        <form:label path="punktKoncowy">Punkt końcowy</form:label>
+                        <form:input type="text" name="punktKoncowy" path="punktKoncowy"/>
                     </div>
                     <div id="punktyDiv">
-                        <label for="punktyInput">Punkty</label>
-                        <input type="text" name="punkty" id="punktyInput">
+                        <form:label path="punktyZaTrase">Punkty</form:label>
+                        <form:input type="text" name="punkty" path="punktyZaTrase"/>
                     </div>
                     <div id="opisDiv">
-                        <label for="opisTextArea">Opis</label>
-                        <textarea name="opis" id="opisTextArea" cols="60" rows="5"></textarea>
+                        <form:label path="opis">Opis</form:label>
+                        <form:textarea name="opis" path="opis" cols="60" rows="5"></form:textarea>
                     </div>
-                </form>
+                    <div id="submitDiv">
+                        <input type="submit" value="Dodaj">
+                    </div>
+                </form:form>
             </div>
         </div>
 

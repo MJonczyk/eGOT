@@ -1,5 +1,6 @@
 package com.jestgit.egot.trasa;
 
+import com.jestgit.egot.grupa.Grupa;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,8 +15,9 @@ public class Trasa {
     @GeneratedValue
     private Long numerTrasy;
 
-    @Column(name = "GRUPAGORSKANAZWAGRUPY")
-    private String GrupaGorskanazwaGrupy;
+    @ManyToOne
+    @JoinColumn(name = "GrupaGorskanazwaGrupy")
+    private Grupa GrupaGorskanazwaGrupy;
 
     @Column(name = "PUNKTPOCZATKOWY")
     private String punktPoczatkowy;
@@ -40,7 +42,7 @@ public class Trasa {
 
     Trasa(){}
 
-    Trasa(String grupa, String punktPoczatkowy, String punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
+    Trasa(Grupa grupa, String punktPoczatkowy, String punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
         this.GrupaGorskanazwaGrupy = grupa;
         this.punktPoczatkowy = punktPoczatkowy;
         this.punktKoncowy = punktKoncowy;
