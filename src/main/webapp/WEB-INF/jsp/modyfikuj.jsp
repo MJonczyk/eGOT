@@ -1,3 +1,5 @@
+<%@ page import="com.jestgit.egot.trasa.TrasaDTO" %>
+<%@ page import="com.jestgit.egot.trasa.Trasa" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -44,8 +46,12 @@
             <div id="central">
                 <div><h2 id="formTitle">Modyfikuj trasę</h2></div>
                 <form:form id="modyfikujForm" method="post" modelAttribute="trasaDto">
+                    <%
+                        TrasaDTO trasaDTO = (TrasaDTO) request.getAttribute("trasaDto");
+                    %>
+                    <form:input path="id" name="idTrasa" class="notDisplay"></form:input>
                     <div id="trasaNazwaDiv">
-                        Bacówka na jamnej z Suchej Góry
+                        <%= trasaDTO.getPunktKoncowy() + " z " + trasaDTO.getPunktPoczatkowy()%>
                     </div>
                     <div id="grupaGorskaDiv">
                         <form:label path="nazwaGrupy">Grupa górska</form:label>

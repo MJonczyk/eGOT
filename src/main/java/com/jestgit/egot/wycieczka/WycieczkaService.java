@@ -22,4 +22,8 @@ public class WycieczkaService {
         this.ksiazeczkaRepository = ksiazeczkaRepository;
     }
 
+    public ArrayList<Wycieczka> getAll(){
+        return (ArrayList) repository.findAll();
+    }
+
 }

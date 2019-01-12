@@ -25,7 +25,7 @@ public class TrasaService {
 
     public void modify(TrasaDTO trasaDto){
         Grupa grupa = grupaRepository.findById(trasaDto.getNazwaGrupy()).orElse(null);
-        Trasa trasaToUpdate = repository.getOne((Long) trasaDto.getId());
+        Trasa trasaToUpdate = repository.getOne(Long.valueOf(trasaDto.getId().toString()));
         trasaToUpdate.setGrupaGorskanazwaGrupy(grupa);
         trasaToUpdate.setPunktPoczatkowy(trasaDto.getPunktPoczatkowy());
         trasaToUpdate.setPunktKoncowy(trasaDto.getPunktKoncowy());
@@ -36,5 +36,9 @@ public class TrasaService {
 
     public ArrayList<Trasa> getAll(){
         return (ArrayList) repository.findAll();
+    }
+
+    public Trasa getOne(Long id){
+        return repository.getOne(id);
     }
 }

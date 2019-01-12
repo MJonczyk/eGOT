@@ -2,6 +2,7 @@ package com.jestgit.egot.trasa;
 
 import com.jestgit.egot.grupa.Grupa;
 import com.jestgit.egot.grupa.GrupaRepository;
+import com.jestgit.egot.wycieczka.Wycieczka;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -51,24 +52,28 @@ public class TrasaController {
         return modelAndView;
     }
 
-    @GetMapping("/modyfikuj")
-    public ModelAndView modifyTrasa(){
+    @RequestMapping(value = "/modyfikuj/{numerTrasy}")
+    public ModelAndView modifyForm(@PathVariable Long numerTrasy){
         ModelAndView modelAndView = new ModelAndView("modyfikuj");
-        //!!!
-        modelAndView.addObject("trasaDto", new TrasaDTO());
+        Trasa trasa = trasaService.getOne(numerTrasy);
+        modelAndView.addObject("trasaDto", new TrasaDTO(trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy(),
+                trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy(), trasa.getPunktyZaTrase(), trasa.getOpis(), trasa.getNumerTrasy()));
         return modelAndView;
     }
+//
+//    @GetMapping("/modyfikuj")
+//    public ModelAndView modifyTrasa(){
+//        ModelAndView modelAndView = new ModelAndView("modyfikuj");
+//        //!!!
+//        modelAndView.addObject("trasaDto", new TrasaDTO());
+//        return modelAndView;
+//    }
 
-    @PostMapping("/modyfikuj")
+    @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto")TrasaDTO trasaDto){
         ModelAndView modelAndView = new ModelAndView("modyfikuj");
         trasaService.modify(trasaDto);
         return modelAndView;
     }
 
-    @GetMapping("/weryfikuj")
-    public ModelAndView verifyTrasa(){
-        ModelAndView modelAndView = new ModelAndView("weryfikuj");
-        return modelAndView;
-    }
 }

@@ -12,6 +12,8 @@
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/wyswietl.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/wyswietl.js"></script>
 </head>
 
 <body>
@@ -48,7 +50,7 @@
                 <form>
                     <div><h2 id="formTitle">Trasy</h2></div>
                     <div id="trasyTable">
-                        <table>
+                        <table id="trasyTableT">
                             <tr>
                                 <th>Punkt pocz.</th>
                                 <th>Punkt koń.</th>
@@ -59,7 +61,7 @@
                             <%
                                 for(Trasa trasa: trasy){
                             %>
-                            <tr>
+                            <tr class="tableRow" href="http://localhost:8080/modyfikuj/<%=trasa.getNumerTrasy()%>">
                                 <td><%= trasa.getPunktPoczatkowy() %></td>
                                 <td><%= trasa.getPunktKoncowy()%></td>
                                 <td><%= trasa.getPunktyZaTrase() %></td>

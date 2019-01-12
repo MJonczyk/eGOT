@@ -1,5 +1,9 @@
 /*center area styles*/
 
+.notDisplay {
+    display: none;
+}
+
 #trasaNazwaDiv {
     font-size: 180%;
 }

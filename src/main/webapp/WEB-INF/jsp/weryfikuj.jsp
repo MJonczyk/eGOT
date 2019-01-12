@@ -45,35 +45,34 @@
             <div id="central">
                     <div><h2 id="formTitle">Weryfikacja wycieczki</h2></div>
                     <%
-                        Wycieczka wycieczka = (Wycieczka) request.getAttribute("wycieczka");
-                        ArrayList<PozycjaWycieczki> pozycjeWycieczki = (ArrayList<PozycjaWycieczki>) request.getAttribute("pozycjeWycieczki");
+                        ArrayList<Wycieczka> wycieczki = (ArrayList<Wycieczka>) request.getAttribute("wycieczki");
                     %>
 
                     <div id="wycieczkaTable">
                         <table>
                             <tr>
                                 <td>Wycieczka nr</td>
-                                <td><%= wycieczka.getNumerWycieczki()%></td>
+                                <td><%= wycieczki.get(0).getNumerWycieczki()%></td>
                             </tr>
                             <tr>
                                 <td>Data odbycia</td>
-                                <td><%= wycieczka.getDataOdbycia()%></td>
+                                <td><%= wycieczki.get(0).getDataOdbycia()%></td>
                             </tr>
                             <tr>
                                 <td>Data zakończenia</td>
-                                <td><%= wycieczka.getDataZakonczenia()%></td>
+                                <td><%= wycieczki.get(0).getDataZakonczenia()%></td>
                             </tr>
                             <tr>
                                 <td>Punkty</td>
-                                <td><%= wycieczka.getPunkty()%></td>
+                                <td><%= wycieczki.get(0).getPunkty()%></td>
                             </tr>
                             <tr>
                                 <td>Długość</td>
-                                <td><%= wycieczka.getDlugosc()%></td>
+                                <td><%= wycieczki.get(0).getDlugosc()%></td>
                             </tr>
                             <tr>
                                 <td>Opiekun</td>
-                                <td><%= wycieczka.getOpiekun()%></td>
+                                <td><%= wycieczki.get(0).getOpiekun()%></td>
                             </tr>
                         </table>
                     </div>
@@ -81,21 +80,21 @@
                     <div id="opisDiv">
                         <label for="opisTextArea">Opis</label>
                         <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5">
-                            <%= wycieczka.getOpis()%>
+                            <%= wycieczki.get(0).getOpis()%>
                         </textarea>
                     </div>
 
-                    <div id="pozycjeWycieczkiDiv">
-                        <%
-                            for(PozycjaWycieczki pozycjaWycieczki: pozycjeWycieczki){
-                        %>
-                                <div class="pozycjaWycieczki">
-                                    <%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy()%>
-                                </div>
-                        <%
-                            }
-                        %>
-                    </div>
+                    <%--<div id="pozycjeWycieczkiDiv">--%>
+                        <%--<%--%>
+                            <%--for(PozycjaWycieczki pozycjaWycieczki: pozycjeWycieczki){--%>
+                        <%--%>--%>
+                                <%--<div class="pozycjaWycieczki">--%>
+                                    <%--<%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy()%>--%>
+                                <%--</div>--%>
+                        <%--<%--%>
+                            <%--}--%>
+                        <%--%>--%>
+                    <%--</div>--%>
 
             </div>
         </div>

@@ -1,5 +1,9 @@
 /*center area styles*/
 
+table tr {
+    cursor: pointer;
+}
+
 table {
     position: relative;
     margin: 0 auto;
