@@ -60,14 +60,6 @@ public class TrasaController {
                 trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy(), trasa.getPunktyZaTrase(), trasa.getOpis(), trasa.getNumerTrasy()));
         return modelAndView;
     }
-//
-//    @GetMapping("/modyfikuj")
-//    public ModelAndView modifyTrasa(){
-//        ModelAndView modelAndView = new ModelAndView("modyfikuj");
-//        //!!!
-//        modelAndView.addObject("trasaDto", new TrasaDTO());
-//        return modelAndView;
-//    }
 
     @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto")TrasaDTO trasaDto){

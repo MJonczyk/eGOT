@@ -1,17 +1,7 @@
 /*center area styles*/
 
-#titleTitleDiv {
-    display: inline-block;
-    width: 60%;
-}
-
-#titleTitleDiv > h2 {
-    text-align: right;
-}
-
-#checkboxDiv {
-    display: inline-block;
-    width: 20%;
+table tr {
+    cursor: pointer;
 }
 
 table {
