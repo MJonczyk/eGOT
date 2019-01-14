@@ -14,7 +14,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
-    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../../css/base.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 
@@ -44,6 +44,7 @@
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
                 <div><a href="http://localhost:8080/weryfikuj">Weryfikacja wycieczek</a></div>
             </div>
+
 
             <div id="central">
                     <div id="titleTDiv">
@@ -85,7 +86,6 @@
 
             </div>
         </div>
-
     </div>
 
 </body>

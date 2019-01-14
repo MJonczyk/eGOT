@@ -10,6 +10,41 @@ textarea {
     resize: none;
 }
 
+tr:nth-child(n + 2):hover {
+    background-color: rgba(237, 237, 237, 0.3);
+}
+
+.error {
+    width  : 100%;
+    padding: 0;
+
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.formError {
+    width  : 100%;
+    padding: 0;
+
+    font-size: 80%;
+    color: white;
+    background-color: #900;
+    border-radius: 0 0 5px 5px;
+
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0.4em;
+}
+
+.formError:active {
+    padding: 0.5em;
+}
+
 #central {
     border: 3px green solid;
     position: relative;

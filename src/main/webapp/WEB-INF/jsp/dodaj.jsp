@@ -51,18 +51,22 @@
                             <form:option value="Pogórze Izerskie">Pogórze Izerskie</form:option>
                             <form:option value="Karkonosze">Karkonosze</form:option>
                         </form:select>
+                        <form:errors path="nazwaGrupy"></form:errors>
                     </div>
                     <div id="punktPoczatkowyDiv">
                         <form:label path="punktPoczatkowy">Punkt początkowy</form:label>
                         <form:input type="text" name="punktPoczatkowy" path="punktPoczatkowy"/>
+                        <form:errors path="punktPoczatkowy" cssClass="formError"></form:errors>
                     </div>
                     <div id="punktKoncowyDiv">
                         <form:label path="punktKoncowy">Punkt końcowy</form:label>
                         <form:input type="text" name="punktKoncowy" path="punktKoncowy"/>
+                        <form:errors path="punktKoncowy" cssClass="formError"></form:errors>
                     </div>
                     <div id="punktyDiv">
                         <form:label path="punktyZaTrase">Punkty</form:label>
                         <form:input type="text" name="punkty" path="punktyZaTrase"/>
+                        <form:errors path="punktyZaTrase" cssClass="formError"></form:errors>
                     </div>
                     <div id="opisDiv">
                         <form:label path="opis">Opis</form:label>
