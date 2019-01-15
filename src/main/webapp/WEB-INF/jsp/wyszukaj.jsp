@@ -36,7 +36,7 @@
                 <div><a href="#">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
-                <div><a href="http://localhost:8080/weryfikuj">Weryfikacja wycieczek</a></div>
+                <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
             </div>
 
             <div id="central">
@@ -44,7 +44,7 @@
                     <div><h2 id="formTitle">Wyszukiwarka tras</h2></div>
                     <div id="searchDiv">
                         <span id="span"><a href="http://localhost:8080/wyswietl"><img src="../images/lupa.png" class="lupa"></a></span>
-                        <input type="text" name="search" id="searchInput">
+                        <input type="text" name="search" id="searchInput" placeholder="XD">
                     </div>
                     <div id="regionDiv">
                         <label for="regionSelect">Region</label>

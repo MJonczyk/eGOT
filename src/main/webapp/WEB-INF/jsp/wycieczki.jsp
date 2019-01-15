@@ -1,6 +1,8 @@
 <%@ page import="com.jestgit.egot.wycieczka.Wycieczka" %>
 <%@ page import="com.jestgit.egot.pozycjawycieczki.PozycjaWycieczki" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -47,6 +49,7 @@
             <div id="central">
                 <%
                     ArrayList<Wycieczka> wycieczki = (ArrayList<Wycieczka>) request.getAttribute("wycieczki");
+                    DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 %>
 
                 <form>
@@ -55,10 +58,10 @@
                         <table id="trasyTableT">
                             <tr>
                                 <th>Nr wycieczki</th>
-                                <th>Nr ksiazeczki</th>
-                                <th>Data rozpoczecia</th>
-                                <th>Data zakonczenia</th>
-                                <th>Dlugosc</th>
+                                <th>Nr książeczki</th>
+                                <th>Data rozpoczęcia</th>
+                                <th>Data zakończenia</th>
+                                <th>Długość [km]</th>
                                 <th>Punkty</th>
                                 <th>Opiekun</th>
                             </tr>
@@ -68,11 +71,11 @@
                             <tr class="tableRow" href="http://localhost:8080/weryfikuj/<%=wycieczka.getNumerWycieczki()%>">
                                 <td><%= wycieczka.getNumerWycieczki() %></td>
                                 <td><%= wycieczka.getNumerKsiazeczki().getNumerKsiazeczki()%></td>
-                                <td><%= wycieczka.getDataOdbycia().toString() %></td>
-                                <td><%= wycieczka.getDataZakonczenia().toString()%></td>
-                                <td><%= wycieczka.getDlugosc().toString()%></td>
+                                <td><%= formatter.format(wycieczka.getDataOdbycia()) %></td>
+                                <td><%= formatter.format(wycieczka.getDataZakonczenia()) %></td>
+                                <td><%= wycieczka.getDlugosc().toString() %></td>
                                 <td><%= wycieczka.getPunkty().toString()%></td>
-                                <td><%= wycieczka.getOpiekun()%></td>
+                                <td><%= wycieczka.getOpiekun() == null ? "-" : wycieczka.getOpiekun()%></td>
                             </tr>
                             <%
                                 }

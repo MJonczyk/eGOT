@@ -8,13 +8,6 @@
     display: inline-block;
 }
 
-#pozycjeWycieczkiDiv {
-    display: inline-block;
-    width: 30%;
-    vertical-align: top;
-    margin-top: 1%;
-}
-
 #opisDiv {
     margin-top: 2%;
     margin-left: 7%;
@@ -22,25 +15,18 @@
 }
 
 #opisTextArea {
+    float: left;
     text-align: left;
     margin-top: 10px;
 }
 
 #titleTitleDiv {
     display: inline-block;
-    width: 60%;
+    width: 50%;
 }
 
 #titleTitleDiv > h2 {
     text-align: right;
-}
-
-#checkboxDiv {
-    display: inline-block;
-    width: 20%;
-    margin-left: 15%;
-    font-size: 20px;
-    font-weight: bold;
 }
 
 /*table {*/
@@ -79,8 +65,6 @@ td {
 
 #opisTextArea {
     margin-left: 4px;
-    float: left;
-    text-align: left;
 }
 
 #searchInput {

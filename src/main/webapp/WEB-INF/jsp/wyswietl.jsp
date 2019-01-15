@@ -39,7 +39,7 @@
                 <div><a href="#">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
-                <div><a href="http://localhost:8080/weryfikuj">Weryfikacja wycieczek</a></div>
+                <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
             </div>
 
             <div id="central">

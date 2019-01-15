@@ -29,7 +29,7 @@ public class DecyzjaController {
 
     @PostMapping("weryfikuj/{numerWycieczki}/{isAccepted}")
     public String postDecyzja(@ModelAttribute("decyzjaDto")DecyzjaDTO decyzjaDTO){
-        //decyzjaService.add(decyzjaDTO);
+        decyzjaService.add(decyzjaDTO);
         return "wycieczki";
     }
 }

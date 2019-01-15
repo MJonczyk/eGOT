@@ -4,6 +4,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="com.jestgit.egot.wycieczka.WycieczkaDTO" %>
 <%@ page import="com.jestgit.egot.WeryfikujDTO" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -46,7 +48,7 @@
                 <div><a href="#">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
-                <div><a href="http://localhost:8080/weryfikuj">Weryfikacja wycieczek</a></div>
+                <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
             </div>
 
             <div id="central">
@@ -57,16 +59,17 @@
 
                         <div id="checkboxDiv">
                             <form:form id="weryfikujForm" method="post" modelAttribute="weryfikujDTO">
-                                <form:label path="isAccepted">Akceptuj</form:label>
-                                <form:checkbox path="isAccepted" name="isAccepted" id="isAcceptedC"></form:checkbox>
+                                <form:checkbox path="isAccepted" name="isAccepted" onchange="statecheck()"></form:checkbox>
+                                <form:label path="isAccepted" id="isAcceptedCLabel">Akceptuj</form:label>
                             </form:form>
                         </div>
                     </div>
                     <%
                         WycieczkaDTO wycieczka = (WycieczkaDTO) request.getAttribute("wycieczkaDto");
                         ArrayList<PozycjaWycieczki> pozycjeWycieczki = (ArrayList<PozycjaWycieczki>) request.getAttribute("pozycjeWycieczki");
+                        DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                     %>
-
+                <div id="wycieczkaIPozycjeDiv">
                     <div id="wycieczkaTable">
                         <table>
                             <tr>
@@ -75,11 +78,11 @@
                             </tr>
                             <tr>
                                 <td>Data rozpoczęcia</td>
-                                <td><%= wycieczka.getDataOdbycia().toString()%></td>
+                                <td><%= formatter.format(wycieczka.getDataOdbycia()) %></td>
                             </tr>
                             <tr>
                                 <td>Data zakończenia</td>
-                                <td><%= wycieczka.getDataZakonczenia().toString()%></td>
+                                <td><%= formatter.format(wycieczka.getDataZakonczenia()) %></td>
                             </tr>
                             <tr>
                                 <td>Punkty</td>
@@ -87,11 +90,11 @@
                             </tr>
                             <tr>
                                 <td>Długość</td>
-                                <td><%= wycieczka.getDlugosc()%></td>
+                                <td><%= wycieczka.getDlugosc() + " [km]"%></td>
                             </tr>
                             <tr>
                                 <td>Opiekun</td>
-                                <td><%= wycieczka.getOpiekun()%></td>
+                                <td><%= wycieczka.getOpiekun() == null ? "-" : wycieczka.getOpiekun() %></td>
                             </tr>
                         </table>
                     </div>
@@ -102,8 +105,8 @@
                                 for(PozycjaWycieczki pozycjaWycieczki : pozycjeWycieczki){
                             %>
                             <li>
-                                <%= pozycjaWycieczki.getNumerTrasy().getNumerTrasy() + " " + pozycjaWycieczki.getDataRozpoczecia().toString() +
-                                " " + pozycjaWycieczki.getDataZakonczenia().toString() + " " + pozycjaWycieczki.getPunkty().toString()%>
+                                <%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy().getNumerTrasy() + " " + formatter.format(pozycjaWycieczki.getDataRozpoczecia()) +
+                                        " - " + formatter.format(pozycjaWycieczki.getDataZakonczenia()) + " " + pozycjaWycieczki.getPunkty() + " pkt " %>
                             </li>
                             <%
                                 }
@@ -111,24 +114,15 @@
                         </ol>
                     </div>
 
+                </div>
+
+
                     <div id="opisDiv">
-                        <label for="opisTextArea">Opis</label>
-                        <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5">
+                        <label for="opisTextArea">Opis</label><br>
+                        <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5" disabled="true">
                             <%= wycieczka.getOpis()%>
                         </textarea>
                     </div>
-
-                    <%--<div id="pozycjeWycieczkiDiv">--%>
-                        <%--<%--%>
-                            <%--for(PozycjaWycieczki pozycjaWycieczki: pozycjeWycieczki){--%>
-                        <%--%>--%>
-                                <%--<div class="pozycjaWycieczki">--%>
-                                    <%--<%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy()%>--%>
-                                <%--</div>--%>
-                        <%--<%--%>
-                            <%--}--%>
-                        <%--%>--%>
-                    <%--</div>--%>
 
             </div>
         </div>
