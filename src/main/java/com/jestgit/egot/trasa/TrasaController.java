@@ -34,6 +34,13 @@ public class TrasaController {
     @GetMapping("/wyszukaj")
     public ModelAndView search() {
         ModelAndView modelAndView = new ModelAndView("wyszukaj");
+        modelAndView.addObject("trasaDto", new TrasaDTO());
+        return modelAndView;
+    }
+
+    @GetMapping("/wyniki")
+    public ModelAndView searchResults() {
+        ModelAndView modelAndView = new ModelAndView("wyniki");
         return modelAndView;
     }
 

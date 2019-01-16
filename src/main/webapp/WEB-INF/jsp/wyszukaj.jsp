@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,10 +40,10 @@
             </div>
 
             <div id="central">
-                <form>
+                <form:form method="get" modelAttribute="trasaDto" action="http://localhost:8080/wyniki">
                     <div><h2 id="formTitle">Wyszukiwarka tras</h2></div>
                     <div id="searchDiv">
-                        <a href="http://localhost:8080/wyswietl"><img src="../images/lupa.png" class="lupa"></a>
+                        <input type="image" src="../images/lupa.png" class="lupa" alt="Submit">
                         <input type="text" name="search" id="searchInput">
                     </div>
                     <div id="regionDiv">
@@ -79,7 +80,10 @@
                         <label for="punktyMaxInput">Max. punktów</label>
                         <input type="text" name="punktyMax" id="punktyMaxInput">
                     </div>
-                </form>
+                    <div id="submitDiv">
+                        <input type="submit" name="Submit" id="submitInput">
+                    </div>
+                </form:form>
             </div>
         </div>
 
