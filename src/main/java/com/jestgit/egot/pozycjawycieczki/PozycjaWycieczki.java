@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Data
 @Entity
-@Table(name = "pozycjawycieczki")
+@Table(name = "PozycjaWycieczki")
 @IdClass(PozycjaWycieczkiKey.class)
 public class PozycjaWycieczki {
 

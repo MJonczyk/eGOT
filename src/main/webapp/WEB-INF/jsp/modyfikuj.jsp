@@ -1,4 +1,8 @@
+<%@ page import="com.jestgit.egot.trasa.TrasaDTO" %>
+<%@ page import="com.jestgit.egot.trasa.Trasa" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +12,7 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/modyfikuj.css">
 </head>
 
@@ -21,7 +26,7 @@
             <div id="buttons">
                 <a href="#">WYLOGUJ</a>
                 <a href="#">ANULUJ</a>
-                <a href="javascript:{}" onclick="document.getElementById('dodajForm').submit();">ZAPISZ</a>
+                <a href="javascript:{}" onclick="document.getElementById('modyfikujForm').submit();">ZAPISZ</a>
             </div>
         </div>
 
@@ -35,51 +40,50 @@
                 <div><a href="#">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
-                <div><a href="http://localhost:8080/weryfikuj">Weryfikacja wycieczek</a></div>
+                <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
             </div>
 
             <div id="central">
-                <form id="dodajForm">
-                    <div><h2 id="formTitle">Formularz modyfikacji danych trasy punktowanej</h2></div>
+                <div><h2 id="formTitle">Modyfikuj trasę</h2></div>
+                <form:form id="modyfikujForm" method="post" modelAttribute="trasaDto">
+                    <%
+                        TrasaDTO trasaDTO = (TrasaDTO) request.getAttribute("trasaDto");
+                    %>
+                    <form:input path="id" name="idTrasa" class="notDisplay"></form:input>
                     <div id="trasaNazwaDiv">
-                        Bacówka na jamnej z Suchej Góry
-                    </div>
-                    <div id="regionDiv">
-                        <label for="regionSelect">Region</label>
-                        <select id="regionSelect">
-                            <option value="volvo">Sudety</option>
-                            <option value="saab">Pokarpacie</option>
-                            <option value="mercedes">Costam</option>
-                            <option value="audi">Elo</option>
-                        </select>
+                        <%= trasaDTO.getPunktKoncowy() + " z " + trasaDTO.getPunktPoczatkowy()%>
                     </div>
                     <div id="grupaGorskaDiv">
-                        <label for="grupaGorskaSelect">Grupa górska</label>
-                        <select id="grupaGorskaSelect">
-                            <option value="volvo">Sudety</option>
-                            <option value="saab">Pokarpacie</option>
-                            <option value="mercedes">Costam</option>
-                            <option value="audi">Elo</option>
-                        </select>
+                        <form:label path="nazwaGrupy">Grupa górska</form:label>
+                        <form:select path="nazwaGrupy">
+                            <form:option value="Tatry Wysokie">Tatry Wysokie</form:option>
+                            <form:option value="Góry Izerskie">Góry Izerskie</form:option>
+                            <form:option value="Pogórze Izerskie">Pogórze Izerskie</form:option>
+                            <form:option value="Karkonosze">Karkonosze</form:option>
+                        </form:select>
+                        <form:errors path="nazwaGrupy"></form:errors>
                     </div>
                     <div id="punktPoczatkowyDiv">
-                        <label for="punktPoczatkowyInput">Punkt początkowy</label>
-                        <input type="text" name="punktPoczatkowy" id="punktPoczatkowyInput">
+                        <form:label path="punktPoczatkowy">Punkt początkowy</form:label>
+                        <form:input type="text" name="punktPoczatkowy" path="punktPoczatkowy"/>
+                        <form:errors path="punktPoczatkowy" cssClass="formError"></form:errors>
                     </div>
                     <div id="punktKoncowyDiv">
-                        <label for="punktKoncowyInput">Punkt końcowy</label>
-                        <input type="text" name="punktKoncowy" id="punktKoncowyInput">
+                        <form:label path="punktKoncowy">Punkt końcowy</form:label>
+                        <form:input type="text" name="punktKoncowy" path="punktKoncowy"/>
+                        <form:errors path="punktKoncowy" cssClass="formError"></form:errors>
                     </div>
                     <div id="punktyDiv">
-                        <label for="punktyInput">Punkty</label>
-                        <input type="text" name="punkty" id="punktyInput">
+                        <form:label path="punktyZaTrase">Punkty</form:label>
+                        <form:input type="text" name="punkty" path="punktyZaTrase"/>
+                        <br>
+                        <form:errors path="punktyZaTrase" cssClass="formError"></form:errors>
                     </div>
                     <div id="opisDiv">
-                        <label for="opisTextArea">Opis</label>
-                        <textarea name="opis" id="opisTextArea" cols="60" rows="5"></textarea>
+                        <form:label path="opis">Opis</form:label>
+                        <form:textarea name="opis" path="opis" cols="60" rows="5"></form:textarea>
                     </div>
-                    <input type="submit" id="submit-form" class="hidden" />
-                </form>
+                </form:form>
             </div>
         </div>
 

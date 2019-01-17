@@ -1,9 +1,52 @@
 /*center area styles*/
 
-table {
-    position: relative;
-    margin: 0 auto;
+#wycieczkaTable {
+    margin-top: 2%;
+    margin-left: 7%;
+    text-align: left;
+    width: 35%;
+    display: inline-block;
 }
+
+#pozycjeWycieczkiDiv {
+    display: inline-block;
+    width: 30%;
+    vertical-align: top;
+    margin-top: 1%;
+}
+
+#opisDiv {
+    margin-top: 2%;
+    margin-left: 7%;
+    text-align: left;
+}
+
+#opisTextArea {
+    text-align: left;
+    margin-top: 10px;
+}
+
+#titleTitleDiv {
+    display: inline-block;
+    width: 60%;
+}
+
+#titleTitleDiv > h2 {
+    text-align: right;
+}
+
+#checkboxDiv {
+    display: inline-block;
+    width: 20%;
+    margin-left: 15%;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*table {*/
+    /*position: relative;*/
+    /*margin: 0 auto;*/
+/*}*/
 
 th {
     font-size: 180%;
@@ -36,6 +79,8 @@ td {
 
 #opisTextArea {
     margin-left: 4px;
+    float: left;
+    text-align: left;
 }
 
 #searchInput {
@@ -43,99 +88,8 @@ td {
     width: 50%;
 }
 
-form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyDiv, #opisDiv {
-    margin-top: 2%;
-    margin-left: 7%;
-}
-
 form > div > label {
     display: inline-block;
     width: 200px;
     margin-right: 5%;
 }
-
-
-/*-------------------------*/
-
-#container {
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#topBar {
-    border: 3px green solid;
-    border-radius: 3px;
-    margin: -0.5em;
-    display: flex;
-}
-
-#titleDiv {
-    width: 20%;
-}
-
-#appTitle {
-    font-size: 600%;
-    margin-top: 0.05em;
-    margin-bottom: 0.05em;
-    margin-left: 0.5em;
-}
-
-#buttons {
-    position: relative;
-    width: 80%;
-}
-
-#buttons>a {
-    display: inline;
-    float: right;
-    margin-top: 85px;
-    margin-left: 50px;
-    text-decoration: none;
-    color: black;
-    font-size: 150%;
-    font-weight: bold;
-}
-
-#buttons:last-child {
-    margin-right: 20px;
-}
-
-
-/*-------------*/
-
-#underTopBar {
-    position: absolute;
-    display: flex;
-    height: 100%;
-    width: 100%;
-    margin-left: -0.5em;
-    margin-top: 0.4em;
-}
-
-#menu {
-    border: 3px green solid;
-    width: 15%;
-    height: 100%;
-    margin-right: -0.1em;
-    text-align: center;
-}
-
-#menu>div>h3 {
-    text-decoration: none;
-    font-size: 250%;
-    margin-top: 2%;
-    margin-bottom: 5%;
-}
-
-#menu>div>a {
-    text-decoration: none;
-    font-size: 150%;
-    font-weight: bold;
-    color: black;
-}
-
-#menu>div:nth-child(n + 2) {
-    margin-top: 4%;
-}
-
-
-/*--------------*/

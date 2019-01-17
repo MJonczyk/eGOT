@@ -9,7 +9,7 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "Grupagorska")
+@Table(name = "GrupaGorska")
 public class Grupa {
 
     @Column(name ="NAZWAGRUPY")

@@ -1,13 +1,38 @@
 /*center area styles*/
 
-table tr {
-    cursor: pointer;
+#wycieczkaTable {
+    margin-top: 2%;
+    margin-left: 7%;
+    text-align: left;
+    width: 35%;
+    display: inline-block;
 }
 
-table {
-    position: relative;
-    margin: 0 auto;
+#opisDiv {
+    margin-top: 2%;
+    margin-left: 7%;
+    text-align: left;
 }
+
+#opisTextArea {
+    float: left;
+    text-align: left;
+    margin-top: 10px;
+}
+
+#titleTitleDiv {
+    display: inline-block;
+    width: 50%;
+}
+
+#titleTitleDiv > h2 {
+    text-align: right;
+}
+
+/*table {*/
+    /*position: relative;*/
+    /*margin: 0 auto;*/
+/*}*/
 
 th {
     font-size: 180%;
@@ -45,11 +70,6 @@ td {
 #searchInput {
     border-radius: 5px;
     width: 50%;
-}
-
-form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyDiv, #opisDiv {
-    margin-top: 2%;
-    margin-left: 7%;
 }
 
 form > div > label {

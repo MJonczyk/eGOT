@@ -18,13 +18,27 @@ public class TrasaService {
 
     public void add(TrasaDTO trasaDto){
         Grupa grupa = grupaRepository.findById(trasaDto.getNazwaGrupy()).orElse(null);
-        System.out.println(grupa.getNazwaGrupy());
         Trasa trasa1 = new Trasa(grupa, trasaDto.getPunktPoczatkowy(),trasaDto.getPunktKoncowy(),
                 trasaDto.getPunktyZaTrase(), trasaDto.getOpis(), "S", "005/2007/W" ,1);
         repository.save(trasa1);
     }
 
+    public void modify(TrasaDTO trasaDto){
+        Grupa grupa = grupaRepository.findById(trasaDto.getNazwaGrupy()).orElse(null);
+        Trasa trasaToUpdate = repository.getOne(Long.valueOf(trasaDto.getId().toString()));
+        trasaToUpdate.setGrupaGorskanazwaGrupy(grupa);
+        trasaToUpdate.setPunktPoczatkowy(trasaDto.getPunktPoczatkowy());
+        trasaToUpdate.setPunktKoncowy(trasaDto.getPunktKoncowy());
+        trasaToUpdate.setPunktyZaTrase(trasaDto.getPunktyZaTrase());
+        trasaToUpdate.setOpis(trasaDto.getOpis());
+        repository.save(trasaToUpdate);
+    }
+
     public ArrayList<Trasa> getAll(){
         return (ArrayList) repository.findAll();
+    }
+
+    public Trasa getOne(Long id){
+        return repository.getOne(id);
     }
 }

@@ -1,7 +1,10 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ page import="com.jestgit.egot.wycieczka.Wycieczka" %>
+<%@ page import="com.jestgit.egot.pozycjawycieczki.PozycjaWycieczki" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.jestgit.egot.trasa.Trasa" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="java.text.DateFormat" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,8 +27,9 @@
             </div>
 
             <div id="buttons">
-                <a href="#">LOGOWANIE</a>
-                <a href="#">REJESTRACJA</a>
+                <a href="#">WYLOGUJ</a>
+                <a href="#">ANULUJ</a>
+                <a href="javascript:{}" onclick="document.getElementById('dodajForm').submit();">ZAPISZ</a>
             </div>
         </div>
 
@@ -44,29 +48,34 @@
 
             <div id="central">
                 <%
-                    ArrayList<Trasa> trasy = (ArrayList<Trasa>) request.getAttribute("trasy");
+                    ArrayList<Wycieczka> wycieczki = (ArrayList<Wycieczka>) request.getAttribute("wycieczki");
+                    DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                 %>
 
                 <form>
-                    <div><h2 id="formTitle">Trasy</h2></div>
+                    <div><h2 id="formTitle">Wycieczki</h2></div>
                     <div id="trasyTable">
                         <table id="trasyTableT">
                             <tr>
-                                <th>Punkt pocz.</th>
-                                <th>Punkt koń.</th>
+                                <th>Nr wycieczki</th>
+                                <th>Nr książeczki</th>
+                                <th>Data rozpoczęcia</th>
+                                <th>Data zakończenia</th>
+                                <th>Długość [km]</th>
                                 <th>Punkty</th>
-                                <th>Region</th>
-                                <th>Grupa</th>
+                                <th>Opiekun</th>
                             </tr>
                             <%
-                                for(Trasa trasa: trasy){
+                                for(Wycieczka wycieczka: wycieczki){
                             %>
-                            <tr class="tableRow" href="http://localhost:8080/modyfikuj/<%=trasa.getNumerTrasy()%>">
-                                <td><%= trasa.getPunktPoczatkowy() %></td>
-                                <td><%= trasa.getPunktKoncowy()%></td>
-                                <td><%= trasa.getPunktyZaTrase() %></td>
-                                <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaRegionu().getNazwaRegionu()%></td>
-                                <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy()%></td>
+                            <tr class="tableRow" href="http://localhost:8080/weryfikuj/<%=wycieczka.getNumerWycieczki()%>">
+                                <td><%= wycieczka.getNumerWycieczki() %></td>
+                                <td><%= wycieczka.getNumerKsiazeczki().getNumerKsiazeczki()%></td>
+                                <td><%= formatter.format(wycieczka.getDataOdbycia()) %></td>
+                                <td><%= formatter.format(wycieczka.getDataZakonczenia()) %></td>
+                                <td><%= wycieczka.getDlugosc().toString() %></td>
+                                <td><%= wycieczka.getPunkty().toString()%></td>
+                                <td><%= wycieczka.getOpiekun() == null ? "-" : wycieczka.getOpiekun()%></td>
                             </tr>
                             <%
                                 }
