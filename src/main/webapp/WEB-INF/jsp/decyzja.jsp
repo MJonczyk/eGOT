@@ -59,24 +59,28 @@
                         DecyzjaDTO decyzjaDTO = (DecyzjaDTO) request.getAttribute("decyzjaDto");
                         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                     %>
-
+                <form:form id="decyzjaForm" method="post" modelAttribute="decyzjaDto">
                     <div id="wycieczkaTable">
                         <table>
                             <tr>
                                 <td>Wycieczka nr</td>
                                 <td><%= decyzjaDTO.getNumerWycieczki()%></td>
+                                <form:input type="text" name="numerWycieczki" path="numerWycieczki" cssClass="hidden"/>
                             </tr>
                             <tr>
                                 <td>Decyzja nr</td>
                                 <td><%= request.getAttribute("nextDecisionNumber")%></td>
+                                <form:input type="text" name="numerDecyzji" path="numerDecyzji" cssClass="hidden"/>
                             </tr>
                             <tr>
                                 <td>Data decyzji</td>
                                 <td><%= formatter.format(decyzjaDTO.getData()) %></td>
+                                <form:input type="text" name="dataDecyzji" path="data" cssClass="hidden"/>
                             </tr>
                             <tr>
                                 <td>Czy zatwierdzona</td>
                                 <td id="zatwierdzenie"><%= Boolean.parseBoolean(decyzjaDTO.getCzyZatwierdzona()) ? "TAK" : "NIE" %></td>
+                                <form:input type="text" name="czyZatwierdzona" path="czyZatwierdzona" cssClass="hidden"/>
                             </tr>
                         </table>
                     </div>
@@ -86,8 +90,9 @@
                         <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5">
                             <%= Boolean.parseBoolean(decyzjaDTO.getCzyZatwierdzona()) ? "Zgoda" : "Uzasadnij decyzję..." %>
                         </textarea>
+                        <form:input type="text" name="opis" path="uzasadnienie" cssClass="hidden"/>
                     </div>
-            <form:form id="decyzjaForm" method="post" modelAttribute="decyzjaDto"></form:form>
+            </form:form>
             </div>
         </div>
     </div>
