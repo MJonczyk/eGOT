@@ -31,10 +31,10 @@ public class PozycjaWycieczki {
     @Column(name = "DATAZAKONCZENIA")
     private Date dataZakonczenia;
 
-    @Column(name = "PUNKTY")
-    private Float punkty;
+    @Column(name = "KIERUNEK")
+    private String kierunek;
 
     public PozycjaWycieczki(){}
 
-    public PozycjaWycieczki(Date dataRozpoczecia, Date dataZakonczenia, Float punkty){}
+    public PozycjaWycieczki(Date dataRozpoczecia, Date dataZakonczenia, String kierunek){}
 }

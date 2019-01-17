@@ -62,8 +62,8 @@
                                 for(Trasa trasa: trasy){
                             %>
                             <tr class="tableRow" href="http://localhost:8080/modyfikuj/<%=trasa.getNumerTrasy()%>">
-                                <td><%= trasa.getPunktPoczatkowy() %></td>
-                                <td><%= trasa.getPunktKoncowy()%></td>
+                                <td><%= trasa.getPunktPoczatkowy().getNazwaPunktu() %></td>
+                                <td><%= trasa.getPunktKoncowy().getNazwaPunktu() %></td>
                                 <td><%= trasa.getPunktyZaTrase() %></td>
                                 <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaRegionu().getNazwaRegionu()%></td>
                                 <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy()%></td>

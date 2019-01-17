@@ -1,5 +1,7 @@
 <%@ page import="com.jestgit.egot.trasa.TrasaDTO" %>
 <%@ page import="com.jestgit.egot.trasa.Trasa" %>
+<%@ page import="com.jestgit.egot.punkt.Punkt" %>
+<%@ page import="java.util.ArrayList" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -48,10 +50,13 @@
                 <form:form id="modyfikujForm" method="post" modelAttribute="trasaDto">
                     <%
                         TrasaDTO trasaDTO = (TrasaDTO) request.getAttribute("trasaDto");
+
+                        Punkt punktPoczatkowy = (Punkt) request.getAttribute("punktPoczatkowy");
+                        Punkt punktKoncowy = (Punkt) request.getAttribute("punktKoncowy");
                     %>
                     <form:input path="id" name="idTrasa" class="notDisplay"></form:input>
                     <div id="trasaNazwaDiv">
-                        <%= trasaDTO.getPunktKoncowy() + " z " + trasaDTO.getPunktPoczatkowy()%>
+                        <%= punktKoncowy.getNazwaPunktu() + " z " + punktPoczatkowy.getNazwaPunktu()%>
                     </div>
                     <div id="grupaGorskaDiv">
                         <form:label path="nazwaGrupy">Grupa górska</form:label>
@@ -65,13 +70,31 @@
                     </div>
                     <div id="punktPoczatkowyDiv">
                         <form:label path="punktPoczatkowy">Punkt początkowy</form:label>
-                        <form:input type="text" name="punktPoczatkowy" path="punktPoczatkowy"/>
-                        <form:errors path="punktPoczatkowy" cssClass="formError"></form:errors>
+                        <form:select path="punktPoczatkowy">
+
+                            <% ArrayList<Punkt> punkty = (ArrayList<Punkt>) request.getAttribute("punkty"); %>
+
+                            <% for (Punkt punkt: punkty) { %>
+
+                            <form:option value="<%= punkt.getIdPunktu() %>" > <%= punkt.getNazwaPunktu() %> </form:option>
+
+                            <% } %>
+
+                        </form:select>
                     </div>
                     <div id="punktKoncowyDiv">
                         <form:label path="punktKoncowy">Punkt końcowy</form:label>
-                        <form:input type="text" name="punktKoncowy" path="punktKoncowy"/>
-                        <form:errors path="punktKoncowy" cssClass="formError"></form:errors>
+                        <form:select path="punktKoncowy">
+
+                            <% ArrayList<Punkt> punkty = (ArrayList<Punkt>) request.getAttribute("punkty"); %>
+
+                            <% for (Punkt punkt: punkty) { %>
+
+                            <form:option value="<%= punkt.getIdPunktu() %>"> <%= punkt.getNazwaPunktu() %> </form:option>
+
+                            <% } %>
+
+                        </form:select>
                     </div>
                     <div id="punktyDiv">
                         <form:label path="punktyZaTrase">Punkty</form:label>
