@@ -24,18 +24,12 @@ public class Wycieczka {
     @JoinColumn(name = "KsiazeczkanumerKsiazeczki")
     private Ksiazeczka numerKsiazeczki;
 
-    @Column(name = "PUNKTY")
-    private Float punkty;
-
     @Temporal(TemporalType.DATE)
-    @Column(name = "DATAODBYCIA")
-    private Date dataOdbycia;
+    @Column(name = "DATAROZPOCZECIA")
+    private Date dataRozpoczecia;
 
     @Column(name = "OPIS")
     private String opis;
-
-    @Column(name = "DLUGOSC")
-    private Float dlugosc;
 
     @Column(name = "DATAZAKONCZENIA")
     private Date dataZakonczenia;
@@ -52,11 +46,9 @@ public class Wycieczka {
 
     public Wycieczka(){}
 
-    public Wycieczka(Ksiazeczka ksiazeczka, Float punkty, Date dataOdbycia, Float dlugosc, Date dataZakonczenia, String opiekun){
+    public Wycieczka(Ksiazeczka ksiazeczka, Date dataRozpoczecia, Date dataZakonczenia, String opiekun){
         this.numerKsiazeczki = ksiazeczka;
-        this.punkty = punkty;
-        this.dataOdbycia = dataOdbycia;
-        this.dlugosc = dlugosc;
+        this.dataRozpoczecia = dataRozpoczecia;
         this.dataZakonczenia = dataZakonczenia;
         this.opiekun = opiekun;
     }

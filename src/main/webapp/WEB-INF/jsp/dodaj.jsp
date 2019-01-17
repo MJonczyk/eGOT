@@ -1,3 +1,5 @@
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.jestgit.egot.punkt.Punkt" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
@@ -55,13 +57,33 @@
                     </div>
                     <div id="punktPoczatkowyDiv">
                         <form:label path="punktPoczatkowy">Punkt początkowy</form:label>
-                        <form:input type="text" name="punktPoczatkowy" path="punktPoczatkowy"/>
-                        <form:errors path="punktPoczatkowy" cssClass="formError"></form:errors>
+                        <form:select path="punktPoczatkowy">
+                            <% if( !((ArrayList<Punkt>) request.getAttribute("punkty") == null) ) {  %>
+
+                            <% ArrayList<Punkt> punkty = (ArrayList<Punkt>) request.getAttribute("punkty"); %>
+
+                            <% for (Punkt punkt: punkty) { %>
+
+                            <form:option value="<%= punkt.getIdPunktu() %>"> <%= punkt.getNazwaPunktu() %> </form:option>
+
+                            <% } } %>
+
+                        </form:select>
                     </div>
                     <div id="punktKoncowyDiv">
                         <form:label path="punktKoncowy">Punkt końcowy</form:label>
-                        <form:input type="text" name="punktKoncowy" path="punktKoncowy"/>
-                        <form:errors path="punktKoncowy" cssClass="formError"></form:errors>
+                        <form:select path="punktKoncowy">
+                            <% if( !((ArrayList<Punkt>) request.getAttribute("punkty") == null) ) {  %>
+
+                            <% ArrayList<Punkt> punkty = (ArrayList<Punkt>) request.getAttribute("punkty"); %>
+
+                            <% for (Punkt punkt: punkty) { %>
+
+                            <form:option value="<%= punkt.getIdPunktu() %>"> <%= punkt.getNazwaPunktu() %> </form:option>
+
+                            <% } }%>
+
+                        </form:select>
                     </div>
                     <div id="punktyDiv">
                         <form:label path="punktyZaTrase">Punkty</form:label>

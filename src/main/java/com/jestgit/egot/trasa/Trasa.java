@@ -2,6 +2,7 @@ package com.jestgit.egot.trasa;
 
 import com.jestgit.egot.grupa.Grupa;
 import com.jestgit.egot.pozycjawycieczki.PozycjaWycieczki;
+import com.jestgit.egot.punkt.Punkt;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -25,11 +26,13 @@ public class Trasa {
     @JoinColumn(name = "GrupaGorskanazwaGrupy")
     private Grupa GrupaGorskanazwaGrupy;
 
-    @Column(name = "PUNKTPOCZATKOWY")
-    private String punktPoczatkowy;
+    @ManyToOne
+    @JoinColumn(name = "PUNKTPOCZATKOWY")
+    private Punkt punktPoczatkowy;
 
-    @Column(name = "PUNKTKONCOWY")
-    private String punktKoncowy;
+    @ManyToOne
+    @JoinColumn(name = "PUNKTKONCOWY")
+    private Punkt punktKoncowy;
 
     @Column(name = "PUNKTYZATRASE")
     private String punktyZaTrase;
@@ -51,7 +54,7 @@ public class Trasa {
 
     public Trasa(){}
 
-    public Trasa(Grupa grupa, String punktPoczatkowy, String punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
+    public Trasa(Grupa grupa, Punkt punktPoczatkowy, Punkt punktKoncowy, String punktyZaTrase, String opis, String rodzajTrasy, Object id, int flaga) {
         this.GrupaGorskanazwaGrupy = grupa;
         this.punktPoczatkowy = punktPoczatkowy;
         this.punktKoncowy = punktKoncowy;

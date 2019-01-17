@@ -71,10 +71,8 @@
                             <tr class="tableRow" href="http://localhost:8080/weryfikuj/<%=wycieczka.getNumerWycieczki()%>">
                                 <td><%= wycieczka.getNumerWycieczki() %></td>
                                 <td><%= wycieczka.getNumerKsiazeczki().getNumerKsiazeczki()%></td>
-                                <td><%= formatter.format(wycieczka.getDataOdbycia()) %></td>
+                                <td><%= formatter.format(wycieczka.getDataRozpoczecia()) %></td>
                                 <td><%= formatter.format(wycieczka.getDataZakonczenia()) %></td>
-                                <td><%= wycieczka.getDlugosc().toString() %></td>
-                                <td><%= wycieczka.getPunkty().toString()%></td>
                                 <td><%= wycieczka.getOpiekun() == null ? "-" : wycieczka.getOpiekun()%></td>
                             </tr>
                             <%

@@ -10,13 +10,9 @@ public class WycieczkaDTO {
 
     private Long numerKsiazeczki;
 
-    private Float punkty;
-
     private Date dataOdbycia;
 
     private String opis;
-
-    private Float dlugosc;
 
     private Date dataZakonczenia;
 
@@ -28,13 +24,11 @@ public class WycieczkaDTO {
 
     public WycieczkaDTO(){}
 
-    public WycieczkaDTO(Long numerWycieczki, Long numerKsiazeczki, Float punkty, Date dataOdbycia, String opis, Float dlugosc, Date dataZakonczenia, String opiekun, Long numerDecyzji){
+    public WycieczkaDTO(Long numerWycieczki, Long numerKsiazeczki, Date dataOdbycia, String opis, Date dataZakonczenia, String opiekun, Long numerDecyzji){
         this.numerWycieczki = numerWycieczki;
         this.numerKsiazeczki = numerKsiazeczki;
-        this.punkty = punkty;
         this.dataOdbycia = dataOdbycia;
         this.opis = opis;
-        this.dlugosc = dlugosc;
         this.dataZakonczenia = dataZakonczenia;
         this.opiekun = opiekun;
         this.numerDecyzji = numerDecyzji;

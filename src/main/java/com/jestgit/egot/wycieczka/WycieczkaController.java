@@ -42,7 +42,7 @@ public class WycieczkaController {
         Wycieczka wycieczka = wycieczkaService.getOne(numerWycieczki);
         Long numerDecyzji = wycieczka.getDecyzja() == null ? null : wycieczka.getDecyzja().getNumerDecyzji();
         modelAndView.addObject("wycieczkaDto", new WycieczkaDTO(numerWycieczki, wycieczka.getNumerKsiazeczki().getNumerKsiazeczki(),
-                wycieczka.getPunkty(), wycieczka.getDataOdbycia(), wycieczka.getOpis(), wycieczka.getDlugosc(), wycieczka.getDataZakonczenia(),
+                wycieczka.getDataRozpoczecia(), wycieczka.getOpis(), wycieczka.getDataZakonczenia(),
                 wycieczka.getOpiekun(), numerDecyzji));
         Long l = new Long(1);
         ArrayList<PozycjaWycieczki> pozycjeWycieczki = wycieczkaService.getPozycjeWycieczkiByNumerWycieczki(l);

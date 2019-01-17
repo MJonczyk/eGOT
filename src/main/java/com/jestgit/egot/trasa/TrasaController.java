@@ -2,6 +2,7 @@ package com.jestgit.egot.trasa;
 
 import com.jestgit.egot.grupa.Grupa;
 import com.jestgit.egot.grupa.GrupaRepository;
+import com.jestgit.egot.punkt.Punkt;
 import com.jestgit.egot.wycieczka.Wycieczka;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -51,14 +52,17 @@ public class TrasaController {
     public ModelAndView add() {
         ModelAndView modelAndView = new ModelAndView("dodaj");
         modelAndView.addObject("trasaDto", new TrasaDTO());
+        modelAndView.addObject("punkty", trasaService.getPunkty());
         return modelAndView;
     }
 
     @PostMapping("/dodaj")
     public ModelAndView addTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasa, BindingResult bindingResult){
-        ModelAndView modelAndView = new ModelAndView("dodaj");
+        ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl");
         if(bindingResult.hasErrors()){
-            return new ModelAndView("dodaj", bindingResult.getModel());
+            modelAndView = new ModelAndView("dodaj", bindingResult.getModel());
+            modelAndView.addObject("punkty", trasaService.getPunkty());
+            return modelAndView;
         }
         else {
             trasaService.add(trasa);
@@ -70,16 +74,25 @@ public class TrasaController {
     public ModelAndView modifyForm(@PathVariable Long numerTrasy){
         ModelAndView modelAndView = new ModelAndView("modyfikuj");
         Trasa trasa = trasaService.getOne(numerTrasy);
-        modelAndView.addObject("trasaDto", new TrasaDTO(trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy(),
-                trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy(), trasa.getPunktyZaTrase(), trasa.getOpis(), trasa.getNumerTrasy()));
+        modelAndView.addObject("trasaDto", new TrasaDTO(numerTrasy, trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy(),
+                trasa.getPunktPoczatkowy().getIdPunktu(), trasa.getPunktKoncowy().getIdPunktu(), trasa.getPunktyZaTrase(), trasa.getOpis(), trasa.getNumerTrasy()));
+        modelAndView.addObject("punktPoczatkowy", trasa.getPunktPoczatkowy());
+        modelAndView.addObject("punktKoncowy", trasa.getPunktKoncowy());
+        modelAndView.addObject("punkty", trasaService.getPunkty());
         return modelAndView;
     }
 
     @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasaDto, BindingResult bindingResult){
-        ModelAndView modelAndView = new ModelAndView("modyfikuj");
+        ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl");
         if(bindingResult.hasErrors()){
-            return new ModelAndView("modyfikuj", bindingResult.getModel());
+            modelAndView = new ModelAndView("modyfikuj", bindingResult.getModel());
+            Punkt punktPoczatkowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktPoczatkowy();
+            Punkt punktKoncowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktKoncowy();
+            modelAndView.addObject("punktPoczatkowy", punktPoczatkowy);
+            modelAndView.addObject("punktKoncowy", punktKoncowy);
+            modelAndView.addObject("punkty", trasaService.getPunkty());
+            return modelAndView;
         }
         else {
             trasaService.modify(trasaDto);
