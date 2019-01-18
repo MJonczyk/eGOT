@@ -2,6 +2,11 @@ package com.jestgit.egot.decyzja;
 
 import lombok.Data;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import java.util.Date;
 
 @Data
@@ -11,6 +16,10 @@ public class DecyzjaDTO {
     private String numerLegitymacji;
     private String czyZatwierdzona;
     private Date data;
+
+    @Valid
+    @NotEmpty(message = "Należy uzasadnić decyzję!")
+    @Pattern(regexp = "^.{3,300}$", message = "Zbyt krótkie uzasadnienie!")
     private String uzasadnienie;
 
     public DecyzjaDTO(){}

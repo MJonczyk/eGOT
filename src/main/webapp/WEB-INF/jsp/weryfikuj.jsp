@@ -106,20 +106,47 @@
                     </div>
 
                     <div id="pozycjeWycieczkiDiv">
-                        <ol id="pozycjeWycieczkiList">
+                        <p>Przebyte trasy</p>
+                        <table id="pozycjeWycieczkiTable">
+                            <tr>
+                                <th>Kolejność</th>
+                                <th>Start</th>
+                                <th>Koniec</th>
+                                <th>Data rozp.</th>
+                                <th>Data zak.</th>
+                                <th>Punkty</th>
+                            </tr>
                             <%
+                                int counter = 0;
                                 for(PozycjaWycieczki pozycjaWycieczki : pozycjeWycieczki){
+                                    counter++;
                             %>
-                            <li>
-                                <%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy().getNumerTrasy() + " " + formatter.format(pozycjaWycieczki.getDataRozpoczecia()) +
-                                        " - " + formatter.format(pozycjaWycieczki.getDataZakonczenia()) + " "
-                                        + (pozycjaWycieczki.getKierunek().equals("G") ? pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[0] :
-                                        pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[1]) + " pkt " %>
-                            </li>
+                            <tr>
+                                <td> <%= counter + "." %> </td>
+                                <td> <%= (pozycjaWycieczki.getKierunek().equals("G")
+                                        ? pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu()
+                                        : pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu()) %>
+                                </td>
+                                <td> <%= (pozycjaWycieczki.getKierunek().equals("D")
+                                        ? pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu()
+                                        : pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu()) %>
+                                </td>
+                                <td>
+                                    <%= formatter.format(pozycjaWycieczki.getDataRozpoczecia()) %>
+                                </td>
+                                <td>
+                                    <%= formatter.format(pozycjaWycieczki.getDataZakonczenia()) %>
+                                </td>
+                                <td>
+                                    <%= (pozycjaWycieczki.getKierunek().equals("G") ? pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[0] :
+                                            pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[1]) + " pkt " %>
+                                </td>
+                            </tr>
                             <%
                                 }
                             %>
-                        </ol>
+                        </table>
+
                     </div>
 
                 </div>
@@ -127,9 +154,7 @@
 
                     <div id="opisDiv">
                         <label for="opisTextArea">Opis</label><br>
-                        <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5" disabled="true">
-                            <%= wycieczka.getOpis()%>
-                        </textarea>
+                        <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5" disabled="true"><%= wycieczka.getOpis()%></textarea>
                     </div>
 
             </div>

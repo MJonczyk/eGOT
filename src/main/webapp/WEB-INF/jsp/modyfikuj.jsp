@@ -99,7 +99,6 @@
                     <div id="punktyDiv">
                         <form:label path="punktyZaTrase">Punkty</form:label>
                         <form:input type="text" name="punkty" path="punktyZaTrase"/>
-                        <br>
                         <form:errors path="punktyZaTrase" cssClass="formError"></form:errors>
                     </div>
                     <div id="opisDiv">

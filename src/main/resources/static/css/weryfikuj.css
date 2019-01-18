@@ -10,7 +10,7 @@
 
 #pozycjeWycieczkiDiv {
     display: inline-block;
-    width: 30%;
+    width: 45%;
     vertical-align: top;
     margin-top: 1%;
 }
@@ -92,4 +92,25 @@ form > div > label {
     display: inline-block;
     width: 200px;
     margin-right: 5%;
+}
+
+#pozycjeWycieczkiTable th {
+    font-size: 18px;
+}
+
+#pozycjeWycieczkiTable tr td {
+    font-size: 15px;
+}
+
+#pozycjeWycieczkiTable tr td:nth-child(n + 2){
+    border-left: 1px solid darkgray;
+}
+
+#pozycjeWycieczkiTable tr td:nth-child(n + 1){
+    border-top: 1px solid darkgray;
+}
+
+
+#pozycjeWycieczkiTable tr td:-moz-first-node {
+    width: 30px;
 }
