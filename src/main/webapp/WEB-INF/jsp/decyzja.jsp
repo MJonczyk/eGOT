@@ -75,7 +75,6 @@
                             <tr>
                                 <td>Data decyzji</td>
                                 <td><%= formatter.format(decyzjaDTO.getData()) %></td>
-                                <form:input type="text" name="dataDecyzji" path="data" cssClass="hidden"/>
                             </tr>
                             <tr>
                                 <td>Czy zatwierdzona</td>
@@ -86,11 +85,9 @@
                     </div>
 
                     <div id="opisDiv">
-                        <label for="opisTextArea">Uzasadnienie</label><br>
-                        <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5">
-                            <%= Boolean.parseBoolean(decyzjaDTO.getCzyZatwierdzona()) ? "Zgoda" : "Uzasadnij decyzję..." %>
-                        </textarea>
-                        <form:input type="text" name="opis" path="uzasadnienie" cssClass="hidden"/>
+                        <form:label path="uzasadnienie" >Uzasadnienie</form:label><br>
+                        <form:textarea path="uzasadnienie" placeholder="Uzasadnij decyzję..." contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5"></form:textarea>
+                        <form:errors path="uzasadnienie" cssClass="formError"></form:errors>
                     </div>
             </form:form>
             </div>
