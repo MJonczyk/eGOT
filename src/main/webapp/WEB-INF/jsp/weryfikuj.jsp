@@ -6,6 +6,8 @@
 <%@ page import="com.jestgit.egot.WeryfikujDTO" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.math.RoundingMode" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -33,7 +35,7 @@
                 <a href="#">WYLOGUJ</a>
                 <a href="#">ANULUJ</a>
                 <a href="javascript:{}" onclick="document.getElementById('weryfikujForm').submit();
-                                        cos = $('#isAcceptedC').is(':checked');
+                                        cos = document.getElementById('isAccepted').checked;
                                         window.location.replace('http://localhost:8080/weryfikuj/<%= ((WycieczkaDTO) request.getAttribute("wycieczkaDto")).getNumerWycieczki() %>/' + cos);">ZAPISZ</a>
             </div>
         </div>
@@ -59,7 +61,7 @@
 
                         <div id="checkboxDiv">
                             <form:form id="weryfikujForm" method="post" modelAttribute="weryfikujDTO">
-                                <form:checkbox path="isAccepted" name="isAccepted" onchange="statecheck()"></form:checkbox>
+                                <form:checkbox path="isAccepted" id="isAccepted" name="isAccepted" ></form:checkbox>
                                 <form:label path="isAccepted" id="isAcceptedCLabel">Akceptuj</form:label>
                             </form:form>
                         </div>
@@ -67,7 +69,11 @@
                     <%
                         WycieczkaDTO wycieczka = (WycieczkaDTO) request.getAttribute("wycieczkaDto");
                         ArrayList<PozycjaWycieczki> pozycjeWycieczki = (ArrayList<PozycjaWycieczki>) request.getAttribute("pozycjeWycieczki");
+                        Float punktyZaWycieczke = (Float) request.getAttribute("punktyZaWycieczke");
+                        Float dlugoscWycieczki = (Float) request.getAttribute("dlugoscWycieczki");
                         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                        DecimalFormat df = new DecimalFormat("#.##");
+                        df.setRoundingMode(RoundingMode.HALF_UP);
                     %>
                 <div id="wycieczkaIPozycjeDiv">
                     <div id="wycieczkaTable">
@@ -86,11 +92,11 @@
                             </tr>
                             <tr>
                                 <td>Punkty</td>
-                                <td><%= wycieczka.getPunkty()%></td>
+                                <td><%= punktyZaWycieczke %></td>
                             </tr>
                             <tr>
                                 <td>Długość</td>
-                                <td><%= wycieczka.getDlugosc() + " [km]"%></td>
+                                <td><%= df.format(dlugoscWycieczki) + " [km]"%></td>
                             </tr>
                             <tr>
                                 <td>Opiekun</td>
@@ -106,7 +112,9 @@
                             %>
                             <li>
                                 <%= "Trasa nr " + pozycjaWycieczki.getNumerTrasy().getNumerTrasy() + " " + formatter.format(pozycjaWycieczki.getDataRozpoczecia()) +
-                                        " - " + formatter.format(pozycjaWycieczki.getDataZakonczenia()) + " " + pozycjaWycieczki.getPunkty() + " pkt " %>
+                                        " - " + formatter.format(pozycjaWycieczki.getDataZakonczenia()) + " "
+                                        + (pozycjaWycieczki.getKierunek().equals("G") ? pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[0] :
+                                        pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[1]) + " pkt " %>
                             </li>
                             <%
                                 }

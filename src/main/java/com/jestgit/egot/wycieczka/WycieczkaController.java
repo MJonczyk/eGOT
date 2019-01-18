@@ -33,6 +33,8 @@ public class WycieczkaController {
         ArrayList<Wycieczka> wycieczki = wycieczkaService.getAll();
         ModelAndView modelAndView = new ModelAndView("wycieczki");
         modelAndView.addObject("wycieczki", wycieczki);
+        modelAndView.addObject("wycieczkiIDlugosci", wycieczkaService.getWycieczkiIDlugosci(wycieczki));
+        modelAndView.addObject("wycieczkiIPunkty", wycieczkaService.getWycieczkiIPunkty(wycieczki));
         return modelAndView;
     }
 
@@ -47,6 +49,8 @@ public class WycieczkaController {
         Long l = new Long(1);
         ArrayList<PozycjaWycieczki> pozycjeWycieczki = wycieczkaService.getPozycjeWycieczkiByNumerWycieczki(l);
         modelAndView.addObject("pozycjeWycieczki", pozycjeWycieczki);
+        modelAndView.addObject("dlugoscWycieczki", wycieczkaService.calculateDlugoscWycieczki(pozycjeWycieczki));
+        modelAndView.addObject("punktyZaWycieczke", wycieczkaService.calculatePunktyZaWycieczke(pozycjeWycieczki));
         modelAndView.addObject("weryfikujDTO", new WeryfikujDTO());
         return modelAndView;
     }

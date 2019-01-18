@@ -3,6 +3,9 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.text.DateFormat" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Hashtable" %>
+<%@ page import="java.text.DecimalFormat" %>
+<%@ page import="java.math.RoundingMode" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!DOCTYPE html>
@@ -49,7 +52,11 @@
             <div id="central">
                 <%
                     ArrayList<Wycieczka> wycieczki = (ArrayList<Wycieczka>) request.getAttribute("wycieczki");
+                    Hashtable<Long, Float> wycieczkiIDlugosci = (Hashtable<Long, Float>) request.getAttribute("wycieczkiIDlugosci");
+                    Hashtable<Long, Float> wycieczkiIPunkty = (Hashtable<Long, Float>) request.getAttribute("wycieczkiIPunkty");
                     DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                    DecimalFormat df = new DecimalFormat("#.##");
+                    df.setRoundingMode(RoundingMode.HALF_UP);
                 %>
 
                 <form>
@@ -73,6 +80,8 @@
                                 <td><%= wycieczka.getNumerKsiazeczki().getNumerKsiazeczki()%></td>
                                 <td><%= formatter.format(wycieczka.getDataRozpoczecia()) %></td>
                                 <td><%= formatter.format(wycieczka.getDataZakonczenia()) %></td>
+                                <td><%= df.format(wycieczkiIDlugosci.get(wycieczka.getNumerWycieczki())) %></td>
+                                <td><%= wycieczkiIPunkty.get(wycieczka.getNumerWycieczki()) %></td>
                                 <td><%= wycieczka.getOpiekun() == null ? "-" : wycieczka.getOpiekun()%></td>
                             </tr>
                             <%
