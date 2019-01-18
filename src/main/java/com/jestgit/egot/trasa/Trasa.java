@@ -12,6 +12,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import java.util.Set;
 
+import static java.lang.Math.toIntExact;
+
 @Data
 @Entity
 @Table(name = "Trasa")
@@ -65,5 +67,22 @@ public class Trasa {
             this.TurystaidTurysty = (Long)id;
         else
             this.PrzewodniknumerLegitymacji = (String)id;
+    }
+
+    @Override
+    public boolean equals(Object other){
+        if(!(other instanceof Trasa))
+            return false;
+        Trasa oth = (Trasa) other;
+        return this.numerTrasy.equals(oth.numerTrasy);
+    }
+
+    @Override
+    public int hashCode(){
+        int hash = 17;
+        hash = hash * 7 + toIntExact(numerTrasy);
+        hash = hash * 7 + punktKoncowy.hashCode();
+        hash = hash * 7 + punktPoczatkowy.hashCode();
+        return hash;
     }
 }

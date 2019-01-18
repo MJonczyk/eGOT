@@ -7,6 +7,9 @@ import com.jestgit.egot.punkt.PunktRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
 
 @Service
 public class TrasaService {
@@ -38,6 +41,54 @@ public class TrasaService {
         trasaToUpdate.setPunktyZaTrase(trasaDto.getPunktyZaTrase());
         trasaToUpdate.setOpis(trasaDto.getOpis());
         repository.save(trasaToUpdate);
+    }
+
+    public ArrayList<Trasa> search(TrasaSearchDTO trasaSearchDTO){
+        List<Trasa> trasy1;
+        List<Trasa> trasy2;
+        if(trasaSearchDTO.getNazwaGrupy() == null && trasaSearchDTO.getNazwaRegionu() == null && trasaSearchDTO.getPunktKoncowy().equals("")
+          && trasaSearchDTO.getPunktPoczatkowy().equals(""))
+            trasy1 = new ArrayList<>();
+        else
+            trasy1 = repository.search(trasaSearchDTO.getNazwaGrupy(), trasaSearchDTO.getNazwaRegionu(),
+                                       trasaSearchDTO.getPunktPoczatkowy(), trasaSearchDTO.getPunktKoncowy());
+        if(!trasaSearchDTO.getSearchPhrase().equals(""))
+            trasy2 = repository.searchPhrase(trasaSearchDTO.getSearchPhrase());
+        else
+            trasy2 = new ArrayList<>();
+        //for(int i = 0; i < trasy1.size();i++)
+        //    System.out.println(trasy1.get(i).getNumerTrasy());
+        //System.out.println("------------------------");
+        //for(int i = 0; i < trasy2.size();i++)
+        //    System.out.println(trasy2.get(i).getNumerTrasy());
+        //System.out.println("------------------------");
+        for(int i = 0;i < trasy2.size();i++){
+            if(!trasy1.contains(trasy2.get(i)))
+                trasy1.add(trasy2.get(i));
+        }
+        //for(int i = 0; i < trasy1.size();i++)
+        //   System.out.println(trasy1.get(i).getNumerTrasy());
+        //System.out.println("I" + trasaSearchDTO.getPunktyMax() + "I");
+        //System.out.println("I" + trasaSearchDTO.getPunktyMin() + "I");
+        if(trasaSearchDTO.getPunktyMax() != null) {
+            Iterator<Trasa> iter = trasy1.iterator();
+            while (iter.hasNext()) {
+                Trasa t = iter.next();
+                String[] pkt = t.getPunktyZaTrase().split("/");
+                if (!(Integer.parseInt(pkt[0]) <= trasaSearchDTO.getPunktyMax() || Integer.parseInt(pkt[1]) <= trasaSearchDTO.getPunktyMax()))
+                    iter.remove();
+            }
+        }
+        if(trasaSearchDTO.getPunktyMin() != null) {
+            Iterator<Trasa> iter = trasy1.iterator();
+            while (iter.hasNext()) {
+                Trasa t = iter.next();
+                String[] pkt = t.getPunktyZaTrase().split("/");
+                if (!(Integer.parseInt(pkt[0]) >= trasaSearchDTO.getPunktyMin() || Integer.parseInt(pkt[1]) >= trasaSearchDTO.getPunktyMin()))
+                    iter.remove();
+            }
+        }
+        return (ArrayList<Trasa>) trasy1;
     }
 
     public ArrayList<Punkt> getPunkty() {

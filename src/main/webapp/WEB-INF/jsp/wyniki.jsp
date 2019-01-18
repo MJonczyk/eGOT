@@ -10,7 +10,8 @@
     <title>eGOT</title>
     <meta name="keywords" content="egot, got, gory, odznaka, turysta, przewodnik, przodownik">
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
-    <link rel="stylesheet" type="text/css" href="../css/wyswietl.css">
+    <link rel="stylesheet" type="text/css" href="../css/base.css">
+    <link rel="stylesheet" type="text/css" href="../css/wyniki.css">
 </head>
 
 <body>
@@ -41,13 +42,13 @@
 
             <div id="central">
                 <%
-                    ArrayList<Trasa> trasy = (ArrayList<Trasa>) request.getAttribute("trasy");
+                    ArrayList<Trasa> trasy =  (ArrayList<Trasa>) request.getAttribute("trasy");
                 %>
 
                 <form>
                     <div><h2 id="formTitle">Trasy</h2></div>
                     <div id="trasyTable">
-                        <table>
+                        <table id="trasyTableT">
                             <tr>
                                 <th>Punkt pocz.</th>
                                 <th>Punkt koń.</th>
@@ -59,8 +60,8 @@
                                 for(Trasa trasa: trasy){
                             %>
                             <tr>
-                                <td><%= trasa.getPunktPoczatkowy() %></td>
-                                <td><%= trasa.getPunktKoncowy()%></td>
+                                <td><%= trasa.getPunktPoczatkowy().getNazwaPunktu() %></td>
+                                <td><%= trasa.getPunktKoncowy().getNazwaPunktu() %></td>
                                 <td><%= trasa.getPunktyZaTrase() %></td>
                                 <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaRegionu().getNazwaRegionu()%></td>
                                 <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy()%></td>
