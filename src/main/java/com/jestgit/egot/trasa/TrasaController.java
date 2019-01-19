@@ -59,7 +59,7 @@ public class TrasaController {
 
     @PostMapping("/dodaj")
     public ModelAndView addTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasa, BindingResult bindingResult){
-        ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl");
+        ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#dodano");
         if(bindingResult.hasErrors()){
             modelAndView = new ModelAndView("dodaj", bindingResult.getModel());
             modelAndView.addObject("punkty", trasaService.getPunkty());
@@ -85,20 +85,28 @@ public class TrasaController {
 
     @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasaDto, BindingResult bindingResult){
-        ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl");
-        if(bindingResult.hasErrors()){
+        ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#success");
+        if(bindingResult.hasErrors() || !isTrasaUnique(trasaDto)){
             modelAndView = new ModelAndView("modyfikuj", bindingResult.getModel());
             Punkt punktPoczatkowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktPoczatkowy();
             Punkt punktKoncowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktKoncowy();
             modelAndView.addObject("punktPoczatkowy", punktPoczatkowy);
             modelAndView.addObject("punktKoncowy", punktKoncowy);
             modelAndView.addObject("punkty", trasaService.getPunkty());
+            modelAndView.addObject("srogiError", "error");
             return modelAndView;
         }
         else {
             trasaService.modify(trasaDto);
         }
         return modelAndView;
+    }
+
+    public boolean isTrasaUnique(TrasaDTO trasaDTO){
+        Punkt pp = trasaService.getPunktByNumber(trasaDTO.getPunktPoczatkowy());
+        Punkt pk = trasaService.getPunktByNumber(trasaDTO.getPunktKoncowy());
+        return trasaService.getAll().stream().filter(trasa -> trasaDTO.getNumerTrasy() != trasa.getNumerTrasy() && trasa.getPunktPoczatkowy().getNazwaPunktu().equals(pp.getNazwaPunktu())
+                && trasa.getPunktKoncowy().getNazwaPunktu().equals(pk.getNazwaPunktu())).count() < 1;
     }
 
 }

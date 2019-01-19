@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="../../css/base.css">
     <link rel="stylesheet" type="text/css" href="../../css/decyzja.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/decyzja.js"></script>
 </head>
 
 <body>
@@ -30,8 +31,20 @@
 
             <div id="buttons">
                 <a href="#">WYLOGUJ</a>
-                <a href="#">ANULUJ</a>
-                <a href="javascript:{}" onclick="document.getElementById('decyzjaForm').submit();">ZAPISZ</a>
+                <a href="#"  onclick=" var r = confirm('Czy na pewno chcesz anulować?');
+                                            if(r == false){
+                                                    return;
+                                             }
+                                            else {
+                                                window.location.replace('http://localhost:8080/wycieczki#anulowano');
+                                            } " >ANULUJ</a>
+                <a href="#" onclick=" var r = confirm('Czy na pewno chcesz zapisać decyzję?');
+                                            if(r == false){
+                                                    return;
+                                             }
+                                            else {
+                                                document.getElementById('decyzjaForm').submit();
+                                            } ">ZAPISZ</a>
             </div>
         </div>
 

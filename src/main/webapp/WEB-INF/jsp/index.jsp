@@ -10,6 +10,7 @@
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <script src="../js/index.js"></script>
 </head>
 
 <body>

@@ -32,7 +32,7 @@ public class DecyzjaController {
 
     @PostMapping("weryfikuj/{numerWycieczki}/{isAccepted}")
     public ModelAndView postDecyzja(@ModelAttribute("decyzjaDto") @Valid DecyzjaDTO decyzjaDTO, BindingResult bindingResult){
-        ModelAndView modelAndView = new ModelAndView("redirect:/wycieczki");
+        ModelAndView modelAndView = new ModelAndView("redirect:/wycieczki#decyzja");
 
         decyzjaDTO.setData(new Date());
         if(bindingResult.hasErrors()){

@@ -34,9 +34,7 @@
             <div id="buttons">
                 <a href="#">WYLOGUJ</a>
                 <a href="#">ANULUJ</a>
-                <a href="javascript:{}" onclick="document.getElementById('weryfikujForm').submit();
-                                        cos = document.getElementById('isAccepted').checked;
-                                        window.location.replace('http://localhost:8080/weryfikuj/<%= ((WycieczkaDTO) request.getAttribute("wycieczkaDto")).getNumerWycieczki() %>/' + cos);">ZAPISZ</a>
+                <a href="#" onclick="submitWeryfikuj(<%= ((WycieczkaDTO) request.getAttribute("wycieczkaDto")).getNumerWycieczki() %>);return false;">DALEJ</a>
             </div>
         </div>
 
@@ -124,12 +122,12 @@
                             <tr>
                                 <td> <%= counter + "." %> </td>
                                 <td> <%= (pozycjaWycieczki.getKierunek().equals("G")
-                                        ? pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu()
-                                        : pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu()) %>
+                                        ? pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu()
+                                        : pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu() ) %>
                                 </td>
                                 <td> <%= (pozycjaWycieczki.getKierunek().equals("D")
-                                        ? pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu()
-                                        : pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu() + " - " + pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu()) %>
+                                        ? pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getNazwaPunktu()
+                                        : pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getNazwaPunktu() ) %>
                                 </td>
                                 <td>
                                     <%= formatter.format(pozycjaWycieczki.getDataRozpoczecia()) %>

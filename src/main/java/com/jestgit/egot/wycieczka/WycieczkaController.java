@@ -46,7 +46,7 @@ public class WycieczkaController {
         modelAndView.addObject("wycieczkaDto", new WycieczkaDTO(numerWycieczki, wycieczka.getNumerKsiazeczki().getNumerKsiazeczki(),
                 wycieczka.getDataRozpoczecia(), wycieczka.getOpis(), wycieczka.getDataZakonczenia(),
                 wycieczka.getOpiekun(), numerDecyzji));
-        Long l = new Long(1);
+        Long l = new Long(numerWycieczki);
         ArrayList<PozycjaWycieczki> pozycjeWycieczki = wycieczkaService.getPozycjeWycieczkiByNumerWycieczki(l);
         modelAndView.addObject("pozycjeWycieczki", pozycjeWycieczki);
         modelAndView.addObject("dlugoscWycieczki", wycieczkaService.calculateDlugoscWycieczki(pozycjeWycieczki));

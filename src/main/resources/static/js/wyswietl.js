@@ -3,7 +3,24 @@ $(document).ready(function() {
         window.location = $(this).attr('href');
         return false;
     });
+
+    if(window.location.hash == '#success'){
+        var n = new Notification("eGOT", {
+            body : "Pomyślnie zmodyfikowano trasę!",
+        });
+    }
+    else if(window.location.hash == '#dodano'){
+        var n = new Notification("eGOT", {
+            body : "Pomyślnie dodano trasę!",
+        });
+    }
 });
+
+function submitWeryfikuj(nrWycieczki) {
+    onclick=document.getElementById('weryfikujForm').submit();
+    cos = document.getElementById('isAccepted').checked;
+    window.location.replace('http://localhost:8080/weryfikuj/' + nrWycieczki + '/' + cos);
+};
 
 // function statecheck() {
 //     var myLayer = document.getElementsByName('isAccepted');

@@ -5,6 +5,7 @@ import lombok.Data;
 
 import javax.validation.Valid;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 @Data
@@ -23,6 +24,7 @@ public class TrasaDTO {
 
     @Valid
     @NotEmpty(message = "Należy podać punkty za trasę!")
+    @Pattern(regexp = "\\d{1,2}\\/\\d{1,2}", message = "Nieprawidłowy format punktów! (Spróbuj x/x)")
     private String punktyZaTrase;
 
     private String opis;

@@ -43,6 +43,10 @@ public class TrasaService {
         repository.save(trasaToUpdate);
     }
 
+    public Punkt getPunktByNumber(Long number){
+        return punktRepository.getOne(number);
+    }
+
     public ArrayList<Trasa> search(TrasaSearchDTO trasaSearchDTO){
         List<Trasa> trasy1;
         List<Trasa> trasy2;

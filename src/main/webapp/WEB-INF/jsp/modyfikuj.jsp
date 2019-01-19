@@ -16,6 +16,8 @@
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/modyfikuj.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/modyfikuj.js"></script>
 </head>
 
 <body>
@@ -27,8 +29,8 @@
 
             <div id="buttons">
                 <a href="#">WYLOGUJ</a>
-                <a href="#">ANULUJ</a>
-                <a href="javascript:{}" onclick="document.getElementById('modyfikujForm').submit();">ZAPISZ</a>
+                <a href="http://localhost:8080/wyswietl">ANULUJ</a>
+                <a href="#" onclick="submitModyfikuj(<%= ((TrasaDTO) request.getAttribute("trasaDto")).getNumerTrasy() %>);return false;">ZAPISZ</a>
             </div>
         </div>
 
@@ -53,6 +55,7 @@
 
                         Punkt punktPoczatkowy = (Punkt) request.getAttribute("punktPoczatkowy");
                         Punkt punktKoncowy = (Punkt) request.getAttribute("punktKoncowy");
+
                     %>
                     <form:input path="id" name="idTrasa" class="notDisplay"></form:input>
                     <div id="trasaNazwaDiv">
@@ -80,7 +83,7 @@
 
                             <% } %>
 
-                        </form:select>
+                        </form:select><span id="punktError" class="hidden">Punkt początkowy i końcowy są takie same!</span>
                     </div>
                     <div id="punktKoncowyDiv">
                         <form:label path="punktKoncowy">Punkt końcowy</form:label>
@@ -94,7 +97,7 @@
 
                             <% } %>
 
-                        </form:select>
+                        </form:select><span id="srogiError" class=" <%= request.getAttribute("srogiError") == null ? "hidden" : "formError" %> "> Trasa już istnieje!</span>
                     </div>
                     <div id="punktyDiv">
                         <form:label path="punktyZaTrase">Punkty</form:label>
