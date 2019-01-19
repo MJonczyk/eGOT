@@ -7,4 +7,14 @@ function submitDecyzja(nrWycieczki) {
     else {
         document.getElementById('decyzjaForm').submit();
     }
-}
+};
+
+window.addEventListener("load", function (ev) {
+    var d = document.getElementById('zatwierdzenie');
+    if(d.innerText == "TAK") {
+        document.getElementById('zatwierdzenie').classList.add('greenText');
+    }
+    else {
+        document.getElementById('zatwierdzenie').classList.add('redText');
+    }
+});

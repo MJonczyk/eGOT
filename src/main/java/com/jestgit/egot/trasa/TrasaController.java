@@ -83,6 +83,35 @@ public class TrasaController {
         return modelAndView;
     }
 
+    @GetMapping("/usun")
+    public ModelAndView getUsun() {
+        ArrayList<Trasa> trasy = trasaService.getAll();
+        ModelAndView modelAndView = new ModelAndView("wyswietl");
+        modelAndView.addObject("usun", "usun");
+        modelAndView.addObject("trasy", trasy);
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/usun/{numerTrasy}")
+    public ModelAndView usunForm(@PathVariable Long numerTrasy){
+        ModelAndView modelAndView = new ModelAndView("usun");
+        Trasa trasa = trasaService.getOne(numerTrasy);
+        modelAndView.addObject("trasaDto", new TrasaDTO(numerTrasy, trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy(),
+                trasa.getPunktPoczatkowy().getIdPunktu(), trasa.getPunktKoncowy().getIdPunktu(), trasa.getPunktyZaTrase(), trasa.getOpis(), trasa.getNumerTrasy()));
+        modelAndView.addObject("punktPoczatkowy", trasa.getPunktPoczatkowy());
+        modelAndView.addObject("punktKoncowy", trasa.getPunktKoncowy());
+        modelAndView.addObject("punkty", trasaService.getPunkty());
+        return modelAndView;
+    }
+
+    @PostMapping("/usun/{numerTrasy}")
+    public ModelAndView usunTrasa(@ModelAttribute("trasaDto") TrasaDTO trasaDto){
+        ModelAndView modelAndView = new ModelAndView("redirect:/usun#success");
+        trasaService.deleteTrasaById(trasaDto.getNumerTrasy());
+        return modelAndView;
+    }
+
+
     @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasaDto, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#success");

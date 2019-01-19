@@ -20,6 +20,17 @@
     <link rel="stylesheet" type="text/css" href="../../css/decyzja.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="../js/decyzja.js"></script>
+    <script>
+        window.addEventListener("load", function (ev) {
+            var d = document.getElementById('zatwierdzenie');
+            if(d.innerText == "TAK") {
+                document.getElementById('zatwierdzenie').classList.add('greenText');
+            }
+            else {
+                document.getElementById('zatwierdzenie').classList.add('redText');
+            }
+        });
+    </script>
 </head>
 
 <body>
@@ -76,21 +87,21 @@
                     <div id="wycieczkaTable">
                         <table>
                             <tr>
-                                <td>Wycieczka nr</td>
+                                <td class="boldC">Wycieczka nr</td>
                                 <td><%= decyzjaDTO.getNumerWycieczki()%></td>
                                 <form:input type="text" name="numerWycieczki" path="numerWycieczki" cssClass="hidden"/>
                             </tr>
                             <tr>
-                                <td>Decyzja nr</td>
+                                <td class="boldC">Decyzja nr</td>
                                 <td><%= request.getAttribute("nextDecisionNumber")%></td>
                                 <form:input type="text" name="numerDecyzji" path="numerDecyzji" cssClass="hidden"/>
                             </tr>
                             <tr>
-                                <td>Data decyzji</td>
+                                <td class="boldC">Data decyzji</td>
                                 <td><%= formatter.format(decyzjaDTO.getData()) %></td>
                             </tr>
                             <tr>
-                                <td>Czy zatwierdzona</td>
+                                <td class="boldC">Czy zatwierdzona</td>
                                 <td id="zatwierdzenie"><%= Boolean.parseBoolean(decyzjaDTO.getCzyZatwierdzona()) ? "TAK" : "NIE" %></td>
                                 <form:input type="text" name="czyZatwierdzona" path="czyZatwierdzona" cssClass="hidden"/>
                             </tr>
@@ -98,7 +109,7 @@
                     </div>
 
                     <div id="opisDiv">
-                        <form:label path="uzasadnienie" >Uzasadnienie</form:label><br>
+                        <form:label path="uzasadnienie" class="boldC">Uzasadnienie</form:label><br>
                         <form:textarea path="uzasadnienie" placeholder="Uzasadnij decyzję..." contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5"></form:textarea>
                         <form:errors path="uzasadnienie" cssClass="formError"></form:errors>
                     </div>

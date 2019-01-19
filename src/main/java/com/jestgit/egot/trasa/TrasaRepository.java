@@ -1,8 +1,10 @@
 package com.jestgit.egot.trasa;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,4 +22,9 @@ public interface TrasaRepository extends JpaRepository<Trasa, Long> {
                    "WHERE gr.nazwaGrupy LIKE %:phrase% OR r.nazwaRegionu LIKE %:phrase% " +
                    "OR pp.nazwaPunktu LIKE %:phrase% OR pk.nazwaPunktu LIKE %:phrase%")
     List<Trasa> searchPhrase(@Param("phrase")String phrase);
+
+    @Modifying
+    @Transactional
+    @Query(value = "DELETE FROM Trasa t WHERE t.numerTrasy = ?1")
+    void deleteTrasaByNumerTrasy(@Param("numerTrasy") Long numerTrasy);
 }

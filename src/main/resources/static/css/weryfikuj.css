@@ -1,5 +1,18 @@
 /*center area styles*/
 
+input[type=checkbox]{
+    -moz-transform: scale(1.8);
+    margin-right: 20px;
+}
+
+.redLabel {
+    color: red;
+}
+
+.greenLabel {
+    color: green;
+}
+
 #wycieczkaTable {
     margin-top: 2%;
     margin-left: 7%;
@@ -10,9 +23,8 @@
 
 #pozycjeWycieczkiDiv {
     display: inline-block;
-    width: 45%;
+    width: 55%;
     vertical-align: top;
-    margin-top: 1%;
 }
 
 #opisDiv {
@@ -37,9 +49,9 @@
 
 #checkboxDiv {
     display: inline-block;
-    width: 20%;
-    margin-left: 15%;
-    font-size: 20px;
+    width: 25%;
+    margin-left: 13%;
+    font-size: 27px;
     font-weight: bold;
 }
 

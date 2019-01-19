@@ -22,6 +22,10 @@ textarea {
     resize: none;
 }
 
+.boldC {
+    font-weight: bold;
+}
+
 tr:nth-child(n + 2):hover {
     background-color: rgba(200, 200, 200, 0.3);
 }

@@ -43,6 +43,10 @@ public class TrasaService {
         repository.save(trasaToUpdate);
     }
 
+    public void deleteTrasaById(Long numerTrasy){
+        repository.deleteTrasaByNumerTrasy(numerTrasy);
+    }
+
     public Punkt getPunktByNumber(Long number){
         return punktRepository.getOne(number);
     }

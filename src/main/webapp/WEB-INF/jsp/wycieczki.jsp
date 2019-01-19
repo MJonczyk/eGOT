@@ -31,8 +31,7 @@
 
             <div id="buttons">
                 <a href="#">WYLOGUJ</a>
-                <a href="#">ANULUJ</a>
-                <a href="javascript:{}" onclick="document.getElementById('dodajForm').submit();">ZAPISZ</a>
+                <a href="http://localhost:8080/index">ANULUJ</a>
             </div>
         </div>
 
@@ -43,7 +42,7 @@
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Modyfikacja tras</a></div>
-                <div><a href="#">Usuwanie tras</a></div>
+                <div><a href="http://localhost:8080/usun">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
                 <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
@@ -57,10 +56,20 @@
                     DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                     DecimalFormat df = new DecimalFormat("#.##");
                     df.setRoundingMode(RoundingMode.HALF_UP);
+
+                    String jakieWycieczki = request.getAttribute("jakieWycieczki") == null ? "" : (request.getAttribute("jakieWycieczki").equals("z") ? "zweryfikowane" : "niezweryfikowane");
                 %>
 
                 <form>
-                    <div><h2 id="formTitle">Wycieczki</h2></div>
+                    <div>
+                        <h2 id="formTitle">Wycieczki <%= jakieWycieczki %></h2>
+                        <select id="selectTrasy">
+                            <option>--Wybierz--</option>
+                            <option onclick="wszystkieOnClick()">Wszystkie</option>
+                            <option onclick="niezweryfikowaneOnClick()">Niezweryfikowane</option>
+                            <option onclick="zweryfikowaneOnClick()">Zweryfikowane</option>
+                        </select>
+                    </div>
                     <div id="trasyTable">
                         <table id="trasyTableT">
                             <tr>

@@ -21,7 +21,7 @@
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/weryfikuj.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="../js/wyswietl.js"></script>
+    <script src="../js/weryfikuj.js"></script>
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 
             <div id="buttons">
                 <a href="#">WYLOGUJ</a>
-                <a href="#">ANULUJ</a>
+                <a href="http://localhost:8080/index">ANULUJ</a>
                 <a href="#" onclick="submitWeryfikuj(<%= ((WycieczkaDTO) request.getAttribute("wycieczkaDto")).getNumerWycieczki() %>);return false;">DALEJ</a>
             </div>
         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Modyfikacja tras</a></div>
-                <div><a href="#">Usuwanie tras</a></div>
+                <div><a href="http://localhost:8080/usun">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
                 <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
@@ -59,8 +59,8 @@
 
                         <div id="checkboxDiv">
                             <form:form id="weryfikujForm" method="post" modelAttribute="weryfikujDTO">
-                                <form:checkbox path="isAccepted" id="isAccepted" name="isAccepted" ></form:checkbox>
-                                <form:label path="isAccepted" id="isAcceptedCLabel">Akceptuj</form:label>
+                                <form:checkbox path="isAccepted" name="isAccepted" cssClass="checkboxClass"></form:checkbox>
+                                <form:label path="isAccepted" id="isAcceptedLabel" cssClass="redLabel">Odrzucona</form:label>
                             </form:form>
                         </div>
                     </div>
@@ -69,6 +69,7 @@
                         ArrayList<PozycjaWycieczki> pozycjeWycieczki = (ArrayList<PozycjaWycieczki>) request.getAttribute("pozycjeWycieczki");
                         Float punktyZaWycieczke = (Float) request.getAttribute("punktyZaWycieczke");
                         Float dlugoscWycieczki = (Float) request.getAttribute("dlugoscWycieczki");
+                        Float[] dlugosci = (Float[]) request.getAttribute("dlugosci");
                         DateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
                         DecimalFormat df = new DecimalFormat("#.##");
                         df.setRoundingMode(RoundingMode.HALF_UP);
@@ -77,42 +78,44 @@
                     <div id="wycieczkaTable">
                         <table>
                             <tr>
-                                <td>Wycieczka nr</td>
+                                <td class="boldC">Wycieczka nr</td>
                                 <td><%= wycieczka.getNumerWycieczki()%></td>
                             </tr>
                             <tr>
-                                <td>Data rozpoczęcia</td>
+                                <td class="boldC">Data rozpoczęcia</td>
                                 <td><%= formatter.format(wycieczka.getDataOdbycia()) %></td>
                             </tr>
                             <tr>
-                                <td>Data zakończenia</td>
+                                <td class="boldC">Data zakończenia</td>
                                 <td><%= formatter.format(wycieczka.getDataZakonczenia()) %></td>
                             </tr>
                             <tr>
-                                <td>Punkty</td>
+                                <td class="boldC">Punkty</td>
                                 <td><%= punktyZaWycieczke %></td>
                             </tr>
                             <tr>
-                                <td>Długość</td>
+                                <td class="boldC">Długość</td>
                                 <td><%= df.format(dlugoscWycieczki) + " [km]"%></td>
                             </tr>
                             <tr>
-                                <td>Opiekun</td>
+                                <td class="boldC">Opiekun</td>
                                 <td><%= wycieczka.getOpiekun() == null ? "-" : wycieczka.getOpiekun() %></td>
                             </tr>
                         </table>
                     </div>
 
                     <div id="pozycjeWycieczkiDiv">
-                        <p>Przebyte trasy</p>
+                        <h3>Przebyte trasy</h3>
                         <table id="pozycjeWycieczkiTable">
                             <tr>
-                                <th>Kolejność</th>
+                                <th>Lp.</th>
                                 <th>Start</th>
                                 <th>Koniec</th>
                                 <th>Data rozp.</th>
                                 <th>Data zak.</th>
                                 <th>Punkty</th>
+                                <th>Długość</th>
+                                <th>Różnica wys.</th>
                             </tr>
                             <%
                                 int counter = 0;
@@ -139,6 +142,8 @@
                                     <%= (pozycjaWycieczki.getKierunek().equals("G") ? pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[0] :
                                             pozycjaWycieczki.getNumerTrasy().getPunktyZaTrase().split("/")[1]) + " pkt " %>
                                 </td>
+                                <td> <%= df.format(dlugosci[counter - 1]) + " km"%> </td>
+                                <td> <%= Math.round(pozycjaWycieczki.getNumerTrasy().getPunktKoncowy().getWysokoscNPM() - pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy().getWysokoscNPM()) + " m.n.p.m." %> </td>
                             </tr>
                             <%
                                 }
@@ -151,7 +156,7 @@
 
 
                     <div id="opisDiv">
-                        <label for="opisTextArea">Opis</label><br>
+                        <label for="opisTextArea" class="boldC">Opis</label><br>
                         <textarea contenteditable="false" name="opis" id="opisTextArea" cols="60" rows="5" disabled="true"><%= wycieczka.getOpis()%></textarea>
                     </div>
 

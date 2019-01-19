@@ -23,3 +23,13 @@ function submitModyfikuj(nrWycieczki) {
         }
     }
 }
+
+function anulujModyfikuj() {
+    var r = confirm("Czy na pewno chcesz anulować?");
+    if(r == false){
+        return;
+    }
+    else {
+        window.location.replace('http://localhost:8080/wyswietl#back');
+    }
+}

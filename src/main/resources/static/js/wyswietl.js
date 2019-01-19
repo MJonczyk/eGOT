@@ -14,13 +14,12 @@ $(document).ready(function() {
             body : "Pomyślnie dodano trasę!",
         });
     }
+    else if(window.location.hash == '#back'){
+        var n = new Notification("eGOT", {
+            body : "Anulowano operację!",
+        });
+    }
 });
-
-function submitWeryfikuj(nrWycieczki) {
-    onclick=document.getElementById('weryfikujForm').submit();
-    cos = document.getElementById('isAccepted').checked;
-    window.location.replace('http://localhost:8080/weryfikuj/' + nrWycieczki + '/' + cos);
-};
 
 // function statecheck() {
 //     var myLayer = document.getElementsByName('isAccepted');

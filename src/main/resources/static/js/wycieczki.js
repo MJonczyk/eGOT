@@ -15,3 +15,15 @@ $(document).ready(function() {
         });
     }
 });
+
+function zweryfikowaneOnClick() {
+    window.location.replace('http://localhost:8080/wycieczki/zweryfikowane');
+}
+
+function niezweryfikowaneOnClick() {
+    window.location.replace('http://localhost:8080/wycieczki/niezweryfikowane');
+}
+
+function wszystkieOnClick() {
+    window.location.replace('http://localhost:8080/wycieczki');
+}

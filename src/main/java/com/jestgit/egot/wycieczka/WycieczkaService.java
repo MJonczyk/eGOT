@@ -34,6 +34,22 @@ public class WycieczkaService {
         return pozycjaWycieczkiRepository.findAllByNumerWycieczki(numerWycieczki);
     }
 
+    public ArrayList<Wycieczka> getWycieczkiNiezweryfikowane(){
+        return repository.getAllByNiezweryfikowane();
+    }
+
+    public ArrayList<Wycieczka> getWycieczkiZweryfikowane(){
+        return repository.getAllByZweryfikowane();
+    }
+
+    public Float[] getWycieczkaIDlugosci(ArrayList<PozycjaWycieczki> pozycjeWycieczki){
+        Float[] wycieczkaIDlugosci = new Float[pozycjeWycieczki.size()];
+        for (int i = 0; i < pozycjeWycieczki.size(); i++) {
+            wycieczkaIDlugosci[i] = distanceBetweenPoints(pozycjeWycieczki.get(i).getNumerTrasy().getPunktPoczatkowy(), pozycjeWycieczki.get(i).getNumerTrasy().getPunktKoncowy());
+        }
+        return wycieczkaIDlugosci;
+    }
+
     public Hashtable<Long, Float> getWycieczkiIDlugosci(ArrayList<Wycieczka> wycieczki){
         Hashtable<Long, Float> wycieczkiIDlugosci = new Hashtable<>();
         for (Wycieczka wycieczka : wycieczki){

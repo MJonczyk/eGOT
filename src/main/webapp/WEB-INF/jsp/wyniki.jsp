@@ -34,7 +34,7 @@
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="http://localhost:8080/modyfikuj">Modyfikacja tras</a></div>
-                <div><a href="#">Usuwanie tras</a></div>
+                <div><a href="http://localhost:8080/usun">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
                 <div><a href="http://localhost:8080/weryfikuj">Weryfikacja wycieczek</a></div>

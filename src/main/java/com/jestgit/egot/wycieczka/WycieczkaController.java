@@ -38,6 +38,30 @@ public class WycieczkaController {
         return modelAndView;
     }
 
+    @GetMapping("/wycieczki/niezweryfikowane")
+    public ModelAndView getWycieczkiNiezweryfikowane(){
+        ArrayList<Wycieczka> wycieczki = wycieczkaService.getWycieczkiNiezweryfikowane();
+        ModelAndView modelAndView = new ModelAndView("wycieczki");
+        modelAndView.addObject("wycieczki", wycieczki);
+        modelAndView.addObject("wycieczkiIDlugosci", wycieczkaService.getWycieczkiIDlugosci(wycieczki));
+        modelAndView.addObject("wycieczkiIPunkty", wycieczkaService.getWycieczkiIPunkty(wycieczki));
+        modelAndView.addObject("jakieWycieczki", "n");
+        return modelAndView;
+    }
+
+    @GetMapping("/wycieczki/zweryfikowane")
+    public ModelAndView getWycieczkiZweryfikowane(){
+        ArrayList<Wycieczka> wycieczki = wycieczkaService.getWycieczkiZweryfikowane();
+        ModelAndView modelAndView = new ModelAndView("wycieczki");
+        modelAndView.addObject("wycieczki", wycieczki);
+        modelAndView.addObject("wycieczkiIDlugosci", wycieczkaService.getWycieczkiIDlugosci(wycieczki));
+        modelAndView.addObject("wycieczkiIPunkty", wycieczkaService.getWycieczkiIPunkty(wycieczki));
+        modelAndView.addObject("jakieWycieczki", "z");
+        return modelAndView;
+    }
+
+
+
     @RequestMapping("weryfikuj/{numerWycieczki}")
     public ModelAndView modifyWycieczka(@PathVariable Long numerWycieczki){
         ModelAndView modelAndView = new ModelAndView("weryfikuj");
@@ -51,6 +75,7 @@ public class WycieczkaController {
         modelAndView.addObject("pozycjeWycieczki", pozycjeWycieczki);
         modelAndView.addObject("dlugoscWycieczki", wycieczkaService.calculateDlugoscWycieczki(pozycjeWycieczki));
         modelAndView.addObject("punktyZaWycieczke", wycieczkaService.calculatePunktyZaWycieczke(pozycjeWycieczki));
+        modelAndView.addObject("dlugosci", wycieczkaService.getWycieczkaIDlugosci(pozycjeWycieczki));
         modelAndView.addObject("weryfikujDTO", new WeryfikujDTO());
         return modelAndView;
     }

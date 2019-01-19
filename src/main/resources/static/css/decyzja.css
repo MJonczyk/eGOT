@@ -1,5 +1,13 @@
 /*center area styles*/
 
+.greenText {
+    color: green;
+}
+
+.redText {
+    color: red;
+}
+
 #wycieczkaTable {
     margin-top: 2%;
     margin-left: 7%;

@@ -1,0 +1,42 @@
+/*center area styles*/
+
+.notDisplay {
+    display: none;
+}
+
+#trasaNazwaDiv {
+    font-size: 180%;
+}
+
+#formTitle {
+    text-align: center;
+    text-decoration: none;
+    font-size: 250%;
+    margin-top: 2%;
+    margin-bottom: 5%;
+}
+
+#opisDiv > label{
+    display: inline-block;
+    float: left;
+}
+
+#opisTextArea {
+    margin-left: 4px;
+}
+
+#searchInput {
+    border-radius: 5px;
+    width: 50%;
+}
+
+form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyDiv, #opisDiv, #trasaNazwaDiv {
+    margin-top: 2%;
+    margin-left: 7%;
+}
+
+form > div > label {
+    display: inline-block;
+    width: 200px;
+    margin-right: 5%;
+}

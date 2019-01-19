@@ -36,7 +36,7 @@
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Modyfikacja tras</a></div>
-                <div><a href="#">Usuwanie tras</a></div>
+                <div><a href="http://localhost:8080/usun">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
                 <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
@@ -45,6 +45,7 @@
             <div id="central">
                 <%
                     ArrayList<Trasa> trasy = (ArrayList<Trasa>) request.getAttribute("trasy");
+                    String flaga = (String) request.getAttribute("usun") == null ? "modyfikuj" : "usun";
                 %>
 
                 <form>
@@ -61,7 +62,7 @@
                             <%
                                 for(Trasa trasa: trasy){
                             %>
-                            <tr class="tableRow" href="http://localhost:8080/modyfikuj/<%=trasa.getNumerTrasy()%>">
+                            <tr class="tableRow" href="http://localhost:8080/<%=flaga%>/<%=trasa.getNumerTrasy()%>">
                                 <td><%= trasa.getPunktPoczatkowy().getNazwaPunktu() %></td>
                                 <td><%= trasa.getPunktKoncowy().getNazwaPunktu() %></td>
                                 <td><%= trasa.getPunktyZaTrase() %></td>
