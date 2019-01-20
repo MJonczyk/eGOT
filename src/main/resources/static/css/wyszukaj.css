@@ -27,6 +27,7 @@
 .lupa {
     width: 30px;
     height: 30px;
+    box-shadow: none;
 }
 
 .lupa:hover {

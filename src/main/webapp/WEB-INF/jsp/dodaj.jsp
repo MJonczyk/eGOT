@@ -13,6 +13,8 @@
     <meta name="description" content="Strona poswiecona gorskiej odznace turystycznej">
     <link rel="stylesheet" type="text/css" href="../css/base.css">
     <link rel="stylesheet" type="text/css" href="../css/dodaj.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="../js/dodaj.js"></script>
 </head>
 
 <body>
@@ -23,9 +25,9 @@
             </div>
 
             <div id="buttons">
-                <a href="#">LOGOWANIE</a>
-                <a href="#">REJESTRACJA</a>
-                <a href="javascript:{}" onclick="document.getElementById('dodajForm').submit();">ZAPISZ</a>
+                <a href="#">WYLOGUJ</a>
+                <a href="#" onclick="anulujDodaj(); return false;">ANULUJ</a>
+                <a href="#" onclick="submitDodaj(); return false;">ZAPISZ</a>
             </div>
         </div>
 
@@ -46,7 +48,7 @@
                 <div><h2 id="formTitle">Dodaj trasę</h2></div>
                 <form:form method="post" modelAttribute="trasaDto" id="dodajForm">
                     <div id="grupaGorskaDiv">
-                        <form:label path="nazwaGrupy">Grupa górska</form:label>
+                        <form:label path="nazwaGrupy" cssClass="boldC">Grupa górska</form:label>
                         <form:select path="nazwaGrupy">
                             <form:option value="Tatry Wysokie">Tatry Wysokie</form:option>
                             <form:option value="Góry Izerskie">Góry Izerskie</form:option>
@@ -56,7 +58,7 @@
                         <form:errors path="nazwaGrupy"></form:errors>
                     </div>
                     <div id="punktPoczatkowyDiv">
-                        <form:label path="punktPoczatkowy">Punkt początkowy</form:label>
+                        <form:label path="punktPoczatkowy" cssClass="boldC">Punkt początkowy</form:label>
                         <form:select path="punktPoczatkowy">
                             <% if( !((ArrayList<Punkt>) request.getAttribute("punkty") == null) ) {  %>
 
@@ -68,10 +70,10 @@
 
                             <% } } %>
 
-                        </form:select>
+                        </form:select><span id="punktError" class="hidden">Punkt początkowy i końcowy są takie same!</span>
                     </div>
                     <div id="punktKoncowyDiv">
-                        <form:label path="punktKoncowy">Punkt końcowy</form:label>
+                        <form:label path="punktKoncowy" cssClass="boldC">Punkt końcowy</form:label>
                         <form:select path="punktKoncowy">
                             <% if( !((ArrayList<Punkt>) request.getAttribute("punkty") == null) ) {  %>
 
@@ -83,15 +85,15 @@
 
                             <% } }%>
 
-                        </form:select>
+                        </form:select><span id="srogiError" class=" <%= request.getAttribute("srogiError") == null ? "hidden" : "formError" %> "> Trasa już istnieje!</span>
                     </div>
                     <div id="punktyDiv">
-                        <form:label path="punktyZaTrase">Punkty</form:label>
+                        <form:label path="punktyZaTrase" cssClass="boldC">Punkty</form:label>
                         <form:input type="text" name="punkty" path="punktyZaTrase"/>
                         <form:errors path="punktyZaTrase" cssClass="formError"></form:errors>
                     </div>
                     <div id="opisDiv">
-                        <form:label path="opis">Opis</form:label>
+                        <form:label path="opis" cssClass="boldC">Opis</form:label>
                         <form:textarea name="opis" path="opis" cols="60" rows="5"></form:textarea>
                     </div>
                 </form:form>

@@ -21,9 +21,7 @@
             </div>
 
             <div id="buttons">
-                <a href="#">LOGOWANIE</a>
-                <a href="#">REJESTRACJA</a>
-
+                <a href="#">WYLOGUJ</a>
             </div>
         </div>
 

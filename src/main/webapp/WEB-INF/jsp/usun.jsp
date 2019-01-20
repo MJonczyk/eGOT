@@ -2,6 +2,7 @@
 <%@ page import="com.jestgit.egot.trasa.Trasa" %>
 <%@ page import="com.jestgit.egot.punkt.Punkt" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -55,6 +56,8 @@
 
                         Punkt punktPoczatkowy = (Punkt) request.getAttribute("punktPoczatkowy");
                         Punkt punktKoncowy = (Punkt) request.getAttribute("punktKoncowy");
+                        Float odleglosc = (Float) request.getAttribute("odleglosc");
+                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
                     %>
                     <form:input path="id" name="idTrasa" class="notDisplay"></form:input>
@@ -62,48 +65,33 @@
                         <%= punktKoncowy.getNazwaPunktu() + " z " + punktPoczatkowy.getNazwaPunktu()%>
                     </div>
                     <div id="grupaGorskaDiv">
-                        <form:label path="nazwaGrupy" cssClass="boldC">Grupa górska</form:label>
-                        <form:select path="nazwaGrupy" disabled="true">
-                            <form:option value="Tatry Wysokie">Tatry Wysokie</form:option>
-                            <form:option value="Góry Izerskie">Góry Izerskie</form:option>
-                            <form:option value="Pogórze Izerskie">Pogórze Izerskie</form:option>
-                            <form:option value="Karkonosze">Karkonosze</form:option>
-                        </form:select>
-                        <form:errors path="nazwaGrupy"></form:errors>
+                        <label for="nazwaGrupy" class="boldC">Grupa górska</label>
+                        <input id="nazwaGrupy" disabled="true" value="<%= trasaDTO.getNazwaGrupy() %>"/>
                     </div>
                     <div id="punktPoczatkowyDiv">
-                        <form:label path="punktPoczatkowy" cssClass="boldC">Punkt początkowy</form:label>
-                        <form:select path="punktPoczatkowy" disabled="true">
-
-                            <% ArrayList<Punkt> punkty = (ArrayList<Punkt>) request.getAttribute("punkty"); %>
-
-                            <% for (Punkt punkt: punkty) { %>
-
-                            <form:option value="<%= punkt.getIdPunktu() %>" > <%= punkt.getNazwaPunktu() %> </form:option>
-
-                            <% } %>
-
-                        </form:select><span id="punktError" class="hidden">Punkt początkowy i końcowy są takie same!</span>
+                        <label for="punktPoczatkowy" class="boldC">Punkt początkowy</label>
+                        <input id="punktPoczatkowy" disabled="true" value="<%= punktPoczatkowy.getNazwaPunktu() %>"/>
                     </div>
                     <div id="punktKoncowyDiv">
-                        <form:label path="punktKoncowy" cssClass="boldC">Punkt końcowy</form:label>
-                        <form:select path="punktKoncowy" disabled="true">
-
-                            <% ArrayList<Punkt> punkty = (ArrayList<Punkt>) request.getAttribute("punkty"); %>
-
-                            <% for (Punkt punkt: punkty) { %>
-
-                            <form:option value="<%= punkt.getIdPunktu() %>"> <%= punkt.getNazwaPunktu() %> </form:option>
-
-                            <% } %>
-
-                        </form:select><span id="srogiError" class=" <%= request.getAttribute("srogiError") == null ? "hidden" : "formError" %> "> Trasa już istnieje!</span>
+                        <label for="punktKoncowy" class="boldC">Punkt końcowy</label>
+                        <input id="punktKoncowy" disabled="true" value="<%= punktKoncowy.getNazwaPunktu() %>"/>
                     </div>
                     <div id="punktyDiv">
                         <form:label path="punktyZaTrase" cssClass="boldC">Punkty</form:label>
                         <form:input type="text" name="punkty" path="punktyZaTrase" disabled="true"/>
                         <form:errors path="punktyZaTrase" cssClass="formError"></form:errors>
                     </div>
+
+                    <div id="dlugoscDiv">
+                        <label for="dlugosc" class="boldC">Długość</label>
+                        <input type="text" name="dlugosc" id="dlugosc" disabled="true" value="<%= decimalFormat.format(odleglosc) + " km" %>"/>
+                    </div>
+
+                    <div id="roznicaDiv">
+                        <label for="roznica" class="boldC">Różnica wysokości</label>
+                        <input type="text" name="roznica" id="roznica" disabled="true" value="<%= decimalFormat.format(punktKoncowy.getWysokoscNPM() - punktPoczatkowy.getWysokoscNPM()) + " m.n.p.m" %>"/>
+                    </div>
+
                     <div id="opisDiv">
                         <form:label path="opis" cssClass="boldC">Opis</form:label>
                         <form:textarea name="opis" path="opis" cols="60" rows="5" disabled="true"></form:textarea>
