@@ -18,3 +18,7 @@ window.addEventListener("load", function (ev) {
         document.getElementById('zatwierdzenie').classList.add('redText');
     }
 });
+
+function toMenu() {
+    window.location.replace('http://localhost:8080/index');
+};

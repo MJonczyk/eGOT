@@ -17,3 +17,7 @@ function anulujUsun() {
         window.location.replace('http://localhost:8080/usun#back');
     }
 }
+
+function toMenu() {
+    window.location.replace('http://localhost:8080/index');
+};

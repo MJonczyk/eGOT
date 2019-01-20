@@ -56,6 +56,24 @@ public class TrasaController {
         return modelAndView;
     }
 
+    @GetMapping("/wyswietl/w1")
+    public ModelAndView getAllW1() {
+        ArrayList<Trasa> trasy = trasaService.getAllW1();
+        ModelAndView modelAndView = new ModelAndView("wyswietl");
+        modelAndView.addObject("trasy", trasy);
+        modelAndView.addObject("jakiWykaz", "w1");
+        return modelAndView;
+    }
+
+    @GetMapping("/wyswietl/w2")
+    public ModelAndView getAllW2() {
+        ArrayList<Trasa> trasy = trasaService.getAllW2();
+        ModelAndView modelAndView = new ModelAndView("wyswietl");
+        modelAndView.addObject("trasy", trasy);
+        modelAndView.addObject("jakiWykaz", "w2");
+        return modelAndView;
+    }
+
     /**
      * Method that processes GET request (/wyszukaj) and creates suitable View using proper Model
      * @return name of the View that will present the search form with needed data

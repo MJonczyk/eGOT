@@ -22,4 +22,8 @@ function addCheckBoxListener(){
             document.getElementById('isAcceptedLabel').innerText = "Odrzucona";
         }
     });
-}
+};
+
+function toMenu() {
+    window.location.replace('http://localhost:8080/index');
+};

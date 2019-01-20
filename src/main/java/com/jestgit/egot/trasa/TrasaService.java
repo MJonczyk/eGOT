@@ -44,6 +44,7 @@ public class TrasaService {
         Punkt punktKoncowy = punktRepository.findById(trasaDto.getPunktKoncowy()).orElse(null);
         Trasa trasa1 = new Trasa(grupa, punktPoczatkowy, punktKoncowy,
                 trasaDto.getPunktyZaTrase(), trasaDto.getOpis(), "S", "005/2007/W" ,1);
+        trasa1.setTurystaidTurysty(2l);
         repository.save(trasa1);
     }
 
@@ -59,6 +60,7 @@ public class TrasaService {
         trasaToUpdate.setPunktKoncowy(punktRepository.findById(trasaDto.getPunktKoncowy()).orElse(null));
         trasaToUpdate.setPunktyZaTrase(trasaDto.getPunktyZaTrase());
         trasaToUpdate.setOpis(trasaDto.getOpis());
+        trasaToUpdate.setTurystaidTurysty(1l); //!!!
         repository.save(trasaToUpdate);
     }
 
@@ -182,5 +184,13 @@ public class TrasaService {
         double a = Math.sin(dLat / 2.0) * Math.sin(dLat / 2.0) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLong/2) * Math.sin(dLong/2);
         double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
         return (float) (R * c);
+    }
+
+    public ArrayList<Trasa> getAllW1(){
+        return (ArrayList) repository.getTrasaByTurystaidTurysty1();
+    }
+
+    public ArrayList<Trasa> getAllW2(){
+        return (ArrayList<Trasa>) repository.getTrasaByTurystaidTurystyNotNull();
     }
 }

@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,4 +42,10 @@ public interface TrasaRepository extends JpaRepository<Trasa, Long> {
     @Transactional
     @Query(value = "DELETE FROM Trasa t WHERE t.numerTrasy = ?1")
     void deleteTrasaByNumerTrasy(@Param("numerTrasy") Long numerTrasy);
+
+    @Query(value = "SELECT t FROM Trasa t WHERE t.TurystaidTurysty IS NOT NULL")
+    List<Trasa> getTrasaByTurystaidTurystyNotNull();
+
+    @Query(value = "SELECT t FROM Trasa t WHERE t.TurystaidTurysty IS NOT NULL AND t.TurystaidTurysty = 1")
+    List<Trasa> getTrasaByTurystaidTurysty1();
 }

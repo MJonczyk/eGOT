@@ -31,7 +31,7 @@
         <div id="underTopBar">
             <div id="menu">
                 <div>
-                    <h3 id="menuTitle">MENU</h3>
+                    <h3 id="menuTitle" onclick="toMenu(); return false;">MENU</h3>
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Modyfikacja tras</a></div>
@@ -45,10 +45,20 @@
                 <%
                     ArrayList<Trasa> trasy = (ArrayList<Trasa>) request.getAttribute("trasy");
                     String flaga = (String) request.getAttribute("usun") == null ? "modyfikuj" : "usun";
+
+                    String jakiWykaz = request.getAttribute("jakiWykaz") == null ? "" : (request.getAttribute("jakiWykaz").equals("w1") ? " wykaz 1 - 2019" : "wykaz 2 - 2020");
                 %>
 
                 <form>
-                    <div><h2 id="formTitle">Trasy</h2></div>
+                    <div>
+                        <h2 id="formTitle">Trasy <%= jakiWykaz %></h2></h2>
+                        <select id="selectTrasy">
+                            <option>--Wybierz--</option>
+                            <option onclick="wszystkieOnClick()">Wszystkie</option>
+                            <option onclick="w1OnClick()">Wykaz w1</option>
+                            <option onclick="w2OnClick()">Wykaz w2</option>
+                        </select><span class="boldC">Filtruj trasy</span>
+                    </div>
                     <div id="trasyTable">
                         <table id="trasyTableT">
                             <tr>

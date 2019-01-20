@@ -33,3 +33,7 @@ function anulujDodaj() {
         window.location.replace('http://localhost:8080/wyswietl#back');
     }
 }
+
+function toMenu() {
+    window.location.replace('http://localhost:8080/index');
+};

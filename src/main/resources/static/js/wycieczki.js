@@ -27,3 +27,7 @@ function niezweryfikowaneOnClick() {
 function wszystkieOnClick() {
     window.location.replace('http://localhost:8080/wycieczki');
 }
+
+function toMenu() {
+    window.location.replace('http://localhost:8080/index');
+};

@@ -68,7 +68,7 @@
                             <option onclick="wszystkieOnClick()">Wszystkie</option>
                             <option onclick="niezweryfikowaneOnClick()">Niezweryfikowane</option>
                             <option onclick="zweryfikowaneOnClick()">Zweryfikowane</option>
-                        </select>
+                        </select><span class="boldC">Filtruj wycieczki</span>
                     </div>
                     <div id="trasyTable">
                         <table id="trasyTableT">

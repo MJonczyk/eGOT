@@ -34,7 +34,7 @@
         <div id="underTopBar">
             <div id="menu">
                 <div>
-                    <h3 id="menuTitle">MENU</h3>
+                    <h3 id="menuTitle" onclick="toMenu(); return false;">MENU</h3>
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Modyfikacja tras</a></div>

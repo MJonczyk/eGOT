@@ -58,3 +58,7 @@ form > div > label {
     width: 200px;
     margin-right: 5%;
 }
+
+#selectTrasy {
+    margin-left: 2%;
+}

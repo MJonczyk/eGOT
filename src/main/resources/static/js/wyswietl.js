@@ -27,6 +27,22 @@ $(document).ready(function() {
     }
 });
 
+function w2OnClick() {
+    window.location.replace('http://localhost:8080/wyswietl/w2');
+};
+
+function w1OnClick() {
+    window.location.replace('http://localhost:8080/wyswietl/w1');
+};
+
+function wszystkieOnClick() {
+    window.location.replace('http://localhost:8080/wyswietl');
+};
+
+function toMenu() {
+    window.location.replace('http://localhost:8080/index');
+};
+
 // function statecheck() {
 //     var myLayer = document.getElementsByName('isAccepted');
 //     var second = document.getElementsByName('_isAccepted');
