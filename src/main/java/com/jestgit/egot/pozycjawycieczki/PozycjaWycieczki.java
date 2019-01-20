@@ -7,6 +7,11 @@ import lombok.Data;
 import javax.persistence.*;
 import java.util.Date;
 
+/**
+ * A class used to model PozycjaWycieczki data from the database
+ * @author Michał Jończyk
+ * @version 1.2
+ */
 @Data
 @Entity
 @Table(name = "PozycjaWycieczki")
@@ -34,7 +39,16 @@ public class PozycjaWycieczki {
     @Column(name = "KIERUNEK")
     private String kierunek;
 
+    /**
+     * Default constructor
+     */
     public PozycjaWycieczki(){}
 
+    /**
+     * Parameterized constructor used to create PozycjaWycieczki and initialize all of its fields
+     * @param dataRozpoczecia date of the start of the Wycieczka
+     * @param dataZakonczenia date of the end of the Wycieczka
+     * @param kierunek direction of the Wycieczka
+     */
     public PozycjaWycieczki(Date dataRozpoczecia, Date dataZakonczenia, String kierunek){}
 }

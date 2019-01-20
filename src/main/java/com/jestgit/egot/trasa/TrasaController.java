@@ -12,21 +12,42 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.validation.Valid;
 import java.util.ArrayList;
 
+/**
+ * A class that maps http requests to the proper method
+ * @author Michał Jończyk
+ * @author Mateusz Wójcik
+ * @version 1.2
+ */
 @Controller
 public class TrasaController {
 
+    /**
+     * Instance of TrasaService used to compute complex operations
+     */
     private TrasaService trasaService;
 
+    /**
+     * Constructor of the Controller, initializes required fields
+     * @param trasaService object that provides implementation of complex operations on Trasa's data
+     */
     TrasaController(TrasaService trasaService) {
         this.trasaService = trasaService;
     }
 
+    /**
+     * Method that processes GET request (/index, /) and creates suitable View using proper Model
+     * @return name of View that will be generated with Model data
+     */
     @GetMapping({"/index", "/"})
     public ModelAndView index() {
         ModelAndView modelAndView = new ModelAndView("index");
         return modelAndView;
     }
 
+    /**
+     * Method that processes GET request (/wyswietl) and creates suitable View using proper Model
+     * @return name of the View that will present list of Trasas that are in the database
+     */
     @GetMapping("/wyswietl")
     public ModelAndView getAll() {
         ArrayList<Trasa> trasy = trasaService.getAll();
@@ -35,6 +56,10 @@ public class TrasaController {
         return modelAndView;
     }
 
+    /**
+     * Method that processes GET request (/wyszukaj) and creates suitable View using proper Model
+     * @return name of the View that will present the search form with needed data
+     */
     @GetMapping("/wyszukaj")
     public ModelAndView search() {
         ModelAndView modelAndView = new ModelAndView("wyszukaj");
@@ -42,6 +67,11 @@ public class TrasaController {
         return modelAndView;
     }
 
+    /**
+     * Method that processes GET request (/wyniki) and creates suitable View using proper Model
+     * @param trasaSearchDto object that transfers data about search parameters
+     * @return name of the View that will present results of the search
+     */
     @GetMapping("/wyniki")
     public ModelAndView searchResults(@ModelAttribute("trasaSearchDto") TrasaSearchDTO trasaSearchDto ) {
         ModelAndView modelAndView = new ModelAndView("wyniki");
@@ -49,6 +79,10 @@ public class TrasaController {
         return modelAndView;
     }
 
+    /**
+     * Method that processes GET request (/dodaj) and creates suitable View using proper Model
+     * @return name of the View that will present the add form with needed data
+     */
     @GetMapping("/dodaj")
     public ModelAndView add() {
         ModelAndView modelAndView = new ModelAndView("dodaj");
@@ -57,10 +91,16 @@ public class TrasaController {
         return modelAndView;
     }
 
+    /**
+     * Method that processes POST request (/dodaj) and creates suitable View using proper Model
+     * @param trasa data of a Trasa that is going to be added
+     * @param bindingResult object that contains validation data
+     * @return name of the View that will present whether the operation was successful or not
+     */
     @PostMapping("/dodaj")
     public ModelAndView addTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasa, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#dodano");
-        if(bindingResult.hasErrors() || !isTrasaUnique(trasa, 1)){
+        if(bindingResult.hasErrors() || !trasaService.isTrasaUnique(trasa, 1)){
             modelAndView = new ModelAndView("dodaj", bindingResult.getModel());
             modelAndView.addObject("punkty", trasaService.getPunkty());
             modelAndView.addObject("srogiError", "error");
@@ -72,6 +112,11 @@ public class TrasaController {
         return modelAndView;
     }
 
+    /**
+     * Method that processes http request (/modyfikuj/{numerTrasy}) and creates suitable View using proper Model
+     * @param numerTrasy Id of the Trasa to modify
+     * @return name of the View that will present the modify form with needed data
+     */
     @RequestMapping(value = "/modyfikuj/{numerTrasy}")
     public ModelAndView modifyForm(@PathVariable Long numerTrasy){
         ModelAndView modelAndView = new ModelAndView("modyfikuj");
@@ -81,10 +126,14 @@ public class TrasaController {
         modelAndView.addObject("punktPoczatkowy", trasa.getPunktPoczatkowy());
         modelAndView.addObject("punktKoncowy", trasa.getPunktKoncowy());
         modelAndView.addObject("punkty", trasaService.getPunkty());
-        modelAndView.addObject("odleglosc", distanceBetweenPoints(trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy()));
+        modelAndView.addObject("odleglosc", trasaService.distanceBetweenPoints(trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy()));
         return modelAndView;
     }
 
+    /**
+     * Method that processes GET request (/usun) and creates suitable View using proper Model
+     * @return name of the View that will present the list of Trasas available to delete
+     */
     @GetMapping("/usun")
     public ModelAndView getUsun() {
         ArrayList<Trasa> trasy = trasaService.getAll();
@@ -94,6 +143,11 @@ public class TrasaController {
         return modelAndView;
     }
 
+    /**
+     * Method that processes http request (/usun/{numerTrasy}) and creates suitable View using proper Model
+     * @param numerTrasy Id of the Trasa to delete
+     * @return name of the View that will present the delete form with needed data
+     */
     @RequestMapping(value = "/usun/{numerTrasy}")
     public ModelAndView usunForm(@PathVariable Long numerTrasy){
         ModelAndView modelAndView = new ModelAndView("usun");
@@ -103,10 +157,15 @@ public class TrasaController {
         modelAndView.addObject("punktPoczatkowy", trasa.getPunktPoczatkowy());
         modelAndView.addObject("punktKoncowy", trasa.getPunktKoncowy());
         modelAndView.addObject("punkty", trasaService.getPunkty());
-        modelAndView.addObject("odleglosc", distanceBetweenPoints(trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy()));
+        modelAndView.addObject("odleglosc", trasaService.distanceBetweenPoints(trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy()));
         return modelAndView;
     }
 
+    /**
+     * Method that processes POST request (/usun/{numerTrasy}) and creates suitable View using proper Model
+     * @param trasaDto data of a Trasa that is going to be deleted
+     * @return name of the View that will present whether the operation was successful or not
+     */
     @PostMapping("/usun/{numerTrasy}")
     public ModelAndView usunTrasa(@ModelAttribute("trasaDto") TrasaDTO trasaDto){
         ModelAndView modelAndView = new ModelAndView("redirect:/usun#usunieto");
@@ -115,10 +174,16 @@ public class TrasaController {
     }
 
 
+    /**
+     * Method that processes POST request (/modyfikuj/{numerTrasy}) and creates suitable View using proper Model
+     * @param trasaDto data of a Trasa that is going to be modified
+     * @param bindingResult object that contains validation data
+     * @return name of the View that will present whether the operation was successful or not
+     */
     @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasaDto, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#success");
-        if(bindingResult.hasErrors() || !isTrasaUnique(trasaDto, 1)){
+        if(bindingResult.hasErrors() || !trasaService.isTrasaUnique(trasaDto, 1)){
             modelAndView = new ModelAndView("modyfikuj", bindingResult.getModel());
             Punkt punktPoczatkowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktPoczatkowy();
             Punkt punktKoncowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktKoncowy();
@@ -126,7 +191,7 @@ public class TrasaController {
             modelAndView.addObject("punktKoncowy", punktKoncowy);
             modelAndView.addObject("punkty", trasaService.getPunkty());
             modelAndView.addObject("srogiError", "error");
-            modelAndView.addObject("odleglosc", distanceBetweenPoints(punktPoczatkowy, punktKoncowy));
+            modelAndView.addObject("odleglosc", trasaService.distanceBetweenPoints(punktPoczatkowy, punktKoncowy));
             return modelAndView;
         }
         else {
@@ -134,26 +199,4 @@ public class TrasaController {
         }
         return modelAndView;
     }
-
-    public boolean isTrasaUnique(TrasaDTO trasaDTO, int number){
-        Punkt pp = trasaService.getPunktByNumber(trasaDTO.getPunktPoczatkowy());
-        Punkt pk = trasaService.getPunktByNumber(trasaDTO.getPunktKoncowy());
-        return trasaService.getAll().stream().filter(trasa -> trasaDTO.getNumerTrasy() != trasa.getNumerTrasy() && trasa.getPunktPoczatkowy().getNazwaPunktu().equals(pp.getNazwaPunktu())
-                && trasa.getPunktKoncowy().getNazwaPunktu().equals(pk.getNazwaPunktu())).count() < number;
-    }
-
-    public Float distanceBetweenPoints(Punkt p1, Punkt p2){
-        Float R = 6371.0f;
-        double lat1 = p1.getSzerokoscGeograficzna() * Math.PI / 180.0;
-        double lat2 = p2.getSzerokoscGeograficzna() * Math.PI / 180.0;
-        double long1 = p1.getDlugoscGeograficzna() * Math.PI / 180.0;
-        double long2 = p2.getDlugoscGeograficzna() * Math.PI / 180.0;
-        double dLong = long2 - long1;
-        double dLat = lat2 - lat1;
-        double a = Math.sin(dLat / 2.0) * Math.sin(dLat / 2.0) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLong/2) * Math.sin(dLong/2);
-        double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-        return (float) (R * c);
-    }
-
-
 }

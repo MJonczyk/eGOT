@@ -8,7 +8,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+/**
+ * An interface that provides CRUD and other basic operations on Trasa data
+ * @author Michał Jończyk
+ * @author Matuesz Wójcik
+ * @version 1.2
+ */
 public interface TrasaRepository extends JpaRepository<Trasa, Long> {
+    /**
+     * Method that returns search results
+     * @param grupa name of the Grupa searched Trasa belongs to
+     * @param region name of the Region searched Trasa belongs to
+     * @param punktPoczatkowy name of the starting Punkt searched Trasa starts with
+     * @param punktKoncowy name of the end Punkt searched Trasa ends with
+     * @param phrase phrase that is going be used to check if the Trasa data contains it
+     * @return list of Trasas that meet given requirements
+     */
     @Query(value = "SELECT t FROM Trasa t INNER JOIN t.GrupaGorskanazwaGrupy gr INNER JOIN gr.nazwaRegionu r " +
                    "INNER JOIN t.punktPoczatkowy pp INNER JOIN t.punktKoncowy pk " +
                    "WHERE ((gr.nazwaGrupy = :grupa AND :grupa IS NOT NULL OR :grupa IS NULL) AND (r.nazwaRegionu = :region AND :region IS NOT NULL " +
@@ -18,6 +33,10 @@ public interface TrasaRepository extends JpaRepository<Trasa, Long> {
     List<Trasa> search(@Param("grupa")String grupa, @Param("region")String region,
                        @Param("poczatek")String punktPoczatkowy, @Param("koniec")String punktKoncowy, @Param("phrase")String phrase);
 
+    /**
+     * Method that deletes Trasa from the database
+     * @param numerTrasy Id of given Trasa
+     */
     @Modifying
     @Transactional
     @Query(value = "DELETE FROM Trasa t WHERE t.numerTrasy = ?1")

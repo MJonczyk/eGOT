@@ -10,6 +10,12 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * A class used to model Wycieczka data from the database
+ * @author Michał Jończyk
+ * @author Mateusz Wójcik
+ * @version 1.2
+ */
 @Data
 @Entity
 @Table(name = "Wycieczka")
@@ -44,8 +50,18 @@ public class Wycieczka {
     @OneToOne(mappedBy = "numerWycieczki")
     private Decyzja decyzja;
 
+    /**
+     * Default constructor
+     */
     public Wycieczka(){}
 
+    /**
+     * Parameterized constructor used to create Wycieczka and initialize all of its fields
+     * @param ksiazeczka Ksiazeczka of Turysta who participated in this Wycieczka
+     * @param dataRozpoczecia date of the start of this Wycieczka
+     * @param dataZakonczenia date of the end of this Wycieczka
+     * @param opiekun Przodownik who participated in this Wycieczka
+     */
     public Wycieczka(Ksiazeczka ksiazeczka, Date dataRozpoczecia, Date dataZakonczenia, String opiekun){
         this.numerKsiazeczki = ksiazeczka;
         this.dataRozpoczecia = dataRozpoczecia;
