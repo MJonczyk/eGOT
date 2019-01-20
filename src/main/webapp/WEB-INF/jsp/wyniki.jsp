@@ -49,23 +49,35 @@
                     <div><h2 id="formTitle">Trasy</h2></div>
                     <div id="trasyTable">
                         <table id="trasyTableT">
-                            <tr>
-                                <th>Punkt pocz.</th>
-                                <th>Punkt koń.</th>
-                                <th>Punkty</th>
-                                <th>Region</th>
-                                <th>Grupa</th>
-                            </tr>
                             <%
-                                for(Trasa trasa: trasy){
+                                if(trasy.size() > 0){
                             %>
-                            <tr>
-                                <td><%= trasa.getPunktPoczatkowy().getNazwaPunktu() %></td>
-                                <td><%= trasa.getPunktKoncowy().getNazwaPunktu() %></td>
-                                <td><%= trasa.getPunktyZaTrase() %></td>
-                                <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaRegionu().getNazwaRegionu()%></td>
-                                <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy()%></td>
-                            </tr>
+                                <tr>
+                                    <th>Punkt pocz.</th>
+                                    <th>Punkt koń.</th>
+                                    <th>Punkty</th>
+                                    <th>Region</th>
+                                    <th>Grupa</th>
+                                </tr>
+                                <%
+                                    for(Trasa trasa: trasy){
+                                %>
+                                <tr>
+                                    <td><%= trasa.getPunktPoczatkowy().getNazwaPunktu() %></td>
+                                    <td><%= trasa.getPunktKoncowy().getNazwaPunktu() %></td>
+                                    <td><%= trasa.getPunktyZaTrase() %></td>
+                                    <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaRegionu().getNazwaRegionu()%></td>
+                                    <td><%= trasa.getGrupaGorskanazwaGrupy().getNazwaGrupy()%></td>
+                                </tr>
+                                <%
+                                    }
+                                %>
+                            <%
+                                }else{
+                            %>
+                                <div>
+                                    <h3 id="noResults">Brak wyników wyszukiwania.</h3>
+                                </div>
                             <%
                                 }
                             %>
