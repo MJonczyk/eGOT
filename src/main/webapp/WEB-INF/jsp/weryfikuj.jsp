@@ -51,6 +51,11 @@
                 <div><a href="http://localhost:8080/wycieczki">Weryfikacja wycieczek</a></div>
             </div>
 
+            <% String walidacja = (String) request.getAttribute("walidacja");
+               String propozycja = (walidacja.equals("ok") || walidacja.equals("opiekun obecny na wycieczce")) ?
+                                    "akceptuj" : "odrzuć";
+            %>
+
             <div id="central">
                     <div id="titleTDiv">
                         <div id="titleTitleDiv">
@@ -62,6 +67,7 @@
                                 <form:checkbox path="isAccepted" name="isAccepted" cssClass="checkboxClass"></form:checkbox>
                                 <form:label path="isAccepted" id="isAcceptedLabel" cssClass="redLabel">Odrzucona</form:label>
                             </form:form>
+                            <h4 id="propozycja">Propozycja:<%= " " + propozycja + (walidacja.equals("ok") ? "" : " - " + walidacja) %></h4>
                         </div>
                     </div>
                     <%

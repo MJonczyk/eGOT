@@ -2,6 +2,7 @@
 <%@ page import="com.jestgit.egot.trasa.Trasa" %>
 <%@ page import="com.jestgit.egot.punkt.Punkt" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DecimalFormat" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
@@ -55,6 +56,8 @@
 
                         Punkt punktPoczatkowy = (Punkt) request.getAttribute("punktPoczatkowy");
                         Punkt punktKoncowy = (Punkt) request.getAttribute("punktKoncowy");
+                        Float odleglosc = (Float) request.getAttribute("odleglosc");
+                        DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
                     %>
                     <form:input path="id" name="idTrasa" class="notDisplay"></form:input>
@@ -104,6 +107,17 @@
                         <form:input type="text" name="punkty" path="punktyZaTrase"/>
                         <form:errors path="punktyZaTrase" cssClass="formError"></form:errors>
                     </div>
+
+                    <div id="dlugoscDiv">
+                        <label for="dlugosc" class="boldC">Długość</label>
+                        <input type="text" name="dlugosc" id="dlugosc" disabled="true" value="<%= decimalFormat.format(odleglosc) + " km" %>"/>
+                    </div>
+
+                    <div id="roznicaDiv">
+                        <label for="roznica" class="boldC">Różnica wysokości</label>
+                        <input type="text" name="roznica" id="roznica" disabled="true" value="<%= decimalFormat.format(punktKoncowy.getWysokoscNPM() - punktPoczatkowy.getWysokoscNPM()) + " m.n.p.m" %>"/>
+                    </div>
+
                     <div id="opisDiv">
                         <form:label path="opis" cssClass="boldC">Opis</form:label>
                         <form:textarea name="opis" path="opis" cols="60" rows="5"></form:textarea>

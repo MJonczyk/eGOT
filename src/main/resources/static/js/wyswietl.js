@@ -14,6 +14,12 @@ $(document).ready(function() {
             body : "Pomyślnie dodano trasę!",
         });
     }
+    else if(window.location.hash == '#usunieto'){
+        var n = new Notification("eGOT", {
+            body : "Pomyślnie usunięto trasę!",
+        });
+    }
+
     else if(window.location.hash == '#back'){
         var n = new Notification("eGOT", {
             body : "Anulowano operację!",

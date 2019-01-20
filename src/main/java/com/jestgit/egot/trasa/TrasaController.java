@@ -60,9 +60,10 @@ public class TrasaController {
     @PostMapping("/dodaj")
     public ModelAndView addTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasa, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#dodano");
-        if(bindingResult.hasErrors()){
+        if(bindingResult.hasErrors() || !isTrasaUnique(trasa, 1)){
             modelAndView = new ModelAndView("dodaj", bindingResult.getModel());
             modelAndView.addObject("punkty", trasaService.getPunkty());
+            modelAndView.addObject("srogiError", "error");
             return modelAndView;
         }
         else {
@@ -80,6 +81,7 @@ public class TrasaController {
         modelAndView.addObject("punktPoczatkowy", trasa.getPunktPoczatkowy());
         modelAndView.addObject("punktKoncowy", trasa.getPunktKoncowy());
         modelAndView.addObject("punkty", trasaService.getPunkty());
+        modelAndView.addObject("odleglosc", distanceBetweenPoints(trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy()));
         return modelAndView;
     }
 
@@ -101,12 +103,13 @@ public class TrasaController {
         modelAndView.addObject("punktPoczatkowy", trasa.getPunktPoczatkowy());
         modelAndView.addObject("punktKoncowy", trasa.getPunktKoncowy());
         modelAndView.addObject("punkty", trasaService.getPunkty());
+        modelAndView.addObject("odleglosc", distanceBetweenPoints(trasa.getPunktPoczatkowy(), trasa.getPunktKoncowy()));
         return modelAndView;
     }
 
     @PostMapping("/usun/{numerTrasy}")
     public ModelAndView usunTrasa(@ModelAttribute("trasaDto") TrasaDTO trasaDto){
-        ModelAndView modelAndView = new ModelAndView("redirect:/usun#success");
+        ModelAndView modelAndView = new ModelAndView("redirect:/usun#usunieto");
         trasaService.deleteTrasaById(trasaDto.getNumerTrasy());
         return modelAndView;
     }
@@ -115,7 +118,7 @@ public class TrasaController {
     @PostMapping("/modyfikuj/{numerTrasy}")
     public ModelAndView modifyTrasa(@ModelAttribute("trasaDto") @Valid TrasaDTO trasaDto, BindingResult bindingResult){
         ModelAndView modelAndView = new ModelAndView("redirect:/wyswietl#success");
-        if(bindingResult.hasErrors() || !isTrasaUnique(trasaDto)){
+        if(bindingResult.hasErrors() || !isTrasaUnique(trasaDto, 1)){
             modelAndView = new ModelAndView("modyfikuj", bindingResult.getModel());
             Punkt punktPoczatkowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktPoczatkowy();
             Punkt punktKoncowy = trasaService.getOne(trasaDto.getNumerTrasy()).getPunktKoncowy();
@@ -123,6 +126,7 @@ public class TrasaController {
             modelAndView.addObject("punktKoncowy", punktKoncowy);
             modelAndView.addObject("punkty", trasaService.getPunkty());
             modelAndView.addObject("srogiError", "error");
+            modelAndView.addObject("odleglosc", distanceBetweenPoints(punktPoczatkowy, punktKoncowy));
             return modelAndView;
         }
         else {
@@ -131,11 +135,25 @@ public class TrasaController {
         return modelAndView;
     }
 
-    public boolean isTrasaUnique(TrasaDTO trasaDTO){
+    public boolean isTrasaUnique(TrasaDTO trasaDTO, int number){
         Punkt pp = trasaService.getPunktByNumber(trasaDTO.getPunktPoczatkowy());
         Punkt pk = trasaService.getPunktByNumber(trasaDTO.getPunktKoncowy());
         return trasaService.getAll().stream().filter(trasa -> trasaDTO.getNumerTrasy() != trasa.getNumerTrasy() && trasa.getPunktPoczatkowy().getNazwaPunktu().equals(pp.getNazwaPunktu())
-                && trasa.getPunktKoncowy().getNazwaPunktu().equals(pk.getNazwaPunktu())).count() < 1;
+                && trasa.getPunktKoncowy().getNazwaPunktu().equals(pk.getNazwaPunktu())).count() < number;
     }
+
+    public Float distanceBetweenPoints(Punkt p1, Punkt p2){
+        Float R = 6371.0f;
+        double lat1 = p1.getSzerokoscGeograficzna() * Math.PI / 180.0;
+        double lat2 = p2.getSzerokoscGeograficzna() * Math.PI / 180.0;
+        double long1 = p1.getDlugoscGeograficzna() * Math.PI / 180.0;
+        double long2 = p2.getDlugoscGeograficzna() * Math.PI / 180.0;
+        double dLong = long2 - long1;
+        double dLat = lat2 - lat1;
+        double a = Math.sin(dLat / 2.0) * Math.sin(dLat / 2.0) + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLong/2) * Math.sin(dLong/2);
+        double c = 2.0 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        return (float) (R * c);
+    }
+
 
 }
