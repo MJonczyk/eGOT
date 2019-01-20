@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class WycieczkaController {
@@ -77,7 +78,44 @@ public class WycieczkaController {
         modelAndView.addObject("punktyZaWycieczke", wycieczkaService.calculatePunktyZaWycieczke(pozycjeWycieczki));
         modelAndView.addObject("dlugosci", wycieczkaService.getWycieczkaIDlugosci(pozycjeWycieczki));
         modelAndView.addObject("weryfikujDTO", new WeryfikujDTO());
+        modelAndView.addObject("walidacja", validateWycieczka(wycieczka, pozycjeWycieczki));
         return modelAndView;
+    }
+
+    public String validateWycieczka(Wycieczka wycieczka, ArrayList<PozycjaWycieczki> pozycjeWycieczki){
+        String isAccepted = "ok";
+
+        if(wycieczka.getOpiekun() != null){
+            System.out.println("opiekun");
+            return "opiekun obecny na wycieczce";
+        }
+        if(pozycjeWycieczki.stream().anyMatch(pozycjaWycieczki -> pozycjaWycieczki.getDataRozpoczecia().equals(pozycjaWycieczki.getDataZakonczenia())
+                && wycieczkaService.distanceBetweenPoints(pozycjaWycieczki.getNumerTrasy().getPunktPoczatkowy(), pozycjaWycieczki.getNumerTrasy().getPunktKoncowy()) > 20.0f)){
+            System.out.println("2");
+            return "zbyt długi dystans przebyty jednego dnia";
+        }
+        if(wycieczkaService.calculateDlugoscWycieczki(pozycjeWycieczki) > 100.0f){
+            System.out.println("za dluga wycieczka");
+            return "wycieczka zbyt długa";
+        }
+        if(pozycjeWycieczki.stream().anyMatch(pozycjaWycieczki ->
+                pozycjeWycieczki.stream().filter(pozycjaWycieczki1 -> pozycjaWycieczki.getDataZakonczenia().equals(pozycjaWycieczki1.getDataZakonczenia())).count() > 20)){
+            System.out.println("za duzo jednego dnia");
+            return "zbyt wiele tras jednego dnia";
+        }
+        if(pozycjeWycieczki.size() > 100){
+            System.out.println("za duzo tras");
+            return "zbyt wiele tras w ramach wycieczki";
+        }
+        if((wycieczkaService.calculateDlugoscWycieczki(pozycjeWycieczki) /
+                (TimeUnit.DAYS.convert(
+                        Math.abs(wycieczka.getDataZakonczenia().getTime() - wycieczka.getDataRozpoczecia().getTime())
+                            , TimeUnit.MILLISECONDS))) > 10.0){
+            System.out.println("srednia na dzien zbyt duza");
+            return "średnia liczba km/dzień zbyt duża";
+        }
+
+        return isAccepted;
     }
 
     @PostMapping("weryfikuj/{numerWycieczki}")
@@ -85,13 +123,5 @@ public class WycieczkaController {
 
         return "";
     }
-
-    //
-//    @PostMapping("/weryfikuj/{numerTrasy}")
-//    public ModelAndView modifyTrasa(@ModelAttribute("trasaDto")TrasaDTO trasaDto){
-//        ModelAndView modelAndView = new ModelAndView("modyfikuj");
-//        trasaService.modify(trasaDto);
-//        return modelAndView;
-//    }
 
 }

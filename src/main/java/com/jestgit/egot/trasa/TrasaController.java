@@ -106,7 +106,7 @@ public class TrasaController {
 
     @PostMapping("/usun/{numerTrasy}")
     public ModelAndView usunTrasa(@ModelAttribute("trasaDto") TrasaDTO trasaDto){
-        ModelAndView modelAndView = new ModelAndView("redirect:/usun#success");
+        ModelAndView modelAndView = new ModelAndView("redirect:/usun#usunieto");
         trasaService.deleteTrasaById(trasaDto.getNumerTrasy());
         return modelAndView;
     }
