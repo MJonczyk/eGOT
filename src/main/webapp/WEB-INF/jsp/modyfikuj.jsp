@@ -71,6 +71,13 @@
                             <form:option value="Góry Izerskie">Góry Izerskie</form:option>
                             <form:option value="Pogórze Izerskie">Pogórze Izerskie</form:option>
                             <form:option value="Karkonosze">Karkonosze</form:option>
+                            <form:option value="Podtatrze">Podtatrze</form:option>
+                            <form:option value="Zapadne Tatry">Zapadne Tatry</form:option>
+                            <form:option value="Rudawy Janowickie">Rudawy Janowickie</form:option>
+                            <form:option value="Beskid Wyspowy">Beskid Wyspowy</form:option>
+                            <form:option value="Spisz i Pieniny">Spisz i Pieniny</form:option>
+                            <form:option value="Góry Kamienne">Góry Kamienne</form:option>
+                            <form:option value="Góry Bardzkie">Góry Bardzkie</form:option>
                         </form:select>
                         <form:errors path="nazwaGrupy"></form:errors>
                     </div>
