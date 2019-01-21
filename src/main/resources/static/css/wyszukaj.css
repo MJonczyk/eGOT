@@ -44,18 +44,13 @@
 #searchInput {
     border-radius: 5px;
     padding-left: 40px;
-    /*width: 50%;*/
+    width: 40%;
     /*background: url("../images/lupa.png") no-repeat scroll;*/
     /*background-size: 20px 20px;*/
-    width: 130px;
     height: 40px;
     font-size: large;
-    -webkit-transition: width 0.4s ease-in-out;
-    transition: width 0.4s ease-in-out;
-}
-
-#searchInput:focus {
-    width: 50%;
+    /*-webkit-transition: width 0.4s ease-in-out;*/
+    /*transition: width 0.4s ease-in-out;*/
 }
 
 form > #regionDiv, #grupaGorskaDiv, #punktPoczatkowyDiv, #punktKoncowyDiv, #punktyMinDiv, #punktyMaxDiv {

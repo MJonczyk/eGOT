@@ -39,14 +39,7 @@
             </div>
 
             <div id="central">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                    aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p>Tu bedzie content glowny</p>
-                <p>
-                    Slynny popularyzator turystyki gorskiej <a href="http://localhost:8080/main">
-                    <img border="0" alt="W3Schools" src="../images/rudy.jpg" width="300" height="450">
-                </a>
-                </p>
+                <h1>Witaj na stronie eGOT!</h1>
             </div>
         </div>
 

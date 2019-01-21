@@ -32,7 +32,7 @@
                     <h3 id="menuTitle">MENU</h3>
                 </div>
                 <div><a href="http://localhost:8080/dodaj">Dodawanie tras</a></div>
-                <div><a href="http://localhost:8080/modyfikuj">Modyfikacja tras</a></div>
+                <div><a href="http://localhost:8080/wyniki">Modyfikacja tras</a></div>
                 <div><a href="http://localhost:8080/usun">Usuwanie tras</a></div>
                 <div><a href="http://localhost:8080/wyswietl">Przeglądanie tras</a></div>
                 <div><a href="http://localhost:8080/wyszukaj">Wyszukiwanie tras</a></div>
