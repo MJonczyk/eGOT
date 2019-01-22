@@ -147,3 +147,11 @@ tr:nth-child(n + 2):hover {
 #menu>div:nth-child(n + 2) {
     margin-top: 4%;
 }
+
+#h1Position {
+    text-align: center;
+}
+
+#indexOpisDiv {
+    padding: 20px;
+}
