@@ -66,6 +66,8 @@
                             <form:option value="Góry Izerskie">Góry Izerskie</form:option>
                             <form:option value="Pogórze Izerskie">Pogórze Izerskie</form:option>
                             <form:option value="Karkonosze">Karkonosze</form:option>
+                            <form:option value="Beskid Śląski">Beskid Śląski</form:option>
+                            <form:option value="Góry Stołowe, Wzgórza Lewińskie">Góry Stołowe, Wzgórza Lewińskie</form:option>
                         </form:select>
                     </div>
                     <div id="punktPoczatkowyDiv">

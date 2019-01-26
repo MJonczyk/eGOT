@@ -24,9 +24,9 @@ public class TrasaService {
 
     /**
      * Constructor of the Service, initializes required fields
-     * @param repository provides CRUD and other basic operations on Trasas data
-     * @param grupaRepository provides CRUD and other basic operations on Grupas data
-     * @param punktRepository provides CRUD and other basic operations on Punkts data
+     * @param repository provides CRUD and other basic operations on Trasa data
+     * @param grupaRepository provides CRUD and other basic operations on Grupa data
+     * @param punktRepository provides CRUD and other basic operations on Punkt data
      */
     TrasaService(TrasaRepository repository, GrupaRepository grupaRepository, PunktRepository punktRepository) {
         this.repository = repository;
@@ -84,7 +84,7 @@ public class TrasaService {
     /**
      * Method that returns results of search
      * @param trasaSearchDTO contains search parameters
-     * @return list of Trasas that meet the requirements
+     * @return list of Trasa that meet the requirements
      */
     public ArrayList<Trasa> search(TrasaSearchDTO trasaSearchDTO){
         List<Trasa> trasy1;
@@ -130,7 +130,7 @@ public class TrasaService {
     }
 
     /**
-     * Method that returns all Punkts
+     * Method that returns all Punkt
      * @return list of Punkts from database
      */
     public ArrayList<Punkt> getPunkty() {
@@ -138,7 +138,7 @@ public class TrasaService {
     }
 
     /**
-     * Method that returns all Trasas
+     * Method that returns all Trasa
      * @return list of Trasas from database
      */
     public ArrayList<Trasa> getAll(){
@@ -168,7 +168,7 @@ public class TrasaService {
     }
 
     /**
-     * Method that computes distance between two Punkts
+     * Method that computes distance between two Punkt objects
      * @param p1 first Punkt
      * @param p2 second Punkt
      * @return distance between two points, in meters
